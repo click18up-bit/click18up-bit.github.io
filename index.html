@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a1327">
+<title>ຄູ່ມືຕິດຕັ້ງແອັບ Royalplus789 — iOS &amp; Android</title>
+<meta name="description" content="ຄູ່ມືການຕິດຕັ້ງແອັບ Royalplus789 ສຳລັບ iOS ແລະ Android ຕິດຕັ້ງງ່າຍໆ ພຽງບໍ່ກີ່ຂັ້ນຕອນ">
+<meta property="og:title" content="ຄູ່ມືຕິດຕັ້ງແອັບ Royalplus789">
+<meta property="og:description" content="ຕິດຕັ້ງງ່າຍໆ ພຽງບໍ່ກີ່ຂັ້ນຕອນ — iOS ແລະ Android">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/logo.jpg">
+<style>
+  :root{
+    --navy:#0a1327; --navy2:#0d1830; --ink:#060b18;
+    --gold:#e9c96a; --gold2:#c99a34; --gold-soft:#f4dd93;
+    --line:rgba(233,201,106,.28);
+    --line-strong:rgba(233,201,106,.55);
+    --text:#f3eddc; --muted:#b9b199;
+    --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Noto Sans Lao","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1100px 620px at 50% -8%, rgba(233,201,106,.14), transparent 60%),
+      radial-gradient(900px 700px at 100% 100%, rgba(60,90,160,.12), transparent 60%),
+      linear-gradient(180deg,#0a1327 0%,#081022 45%,#060b18 100%);
+    background-attachment:fixed;
+    min-height:100vh;line-height:1.6;overflow-x:hidden;
+  }
+
+  /* ---- top bar ---- */
+  header.bar{
+    position:sticky;top:0;z-index:40;
+    display:flex;align-items:center;gap:12px;
+    padding:12px 18px;
+    background:rgba(8,14,30,.72);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar img{width:36px;height:36px;border-radius:9px;object-fit:cover;
+    border:1px solid var(--line-strong);box-shadow:0 0 14px rgba(233,201,106,.25)}
+  .bar b{font-size:16px;letter-spacing:.3px;
+    background:linear-gradient(180deg,var(--gold-soft),var(--gold2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .bar span{color:var(--muted);font-size:12.5px;margin-left:auto}
+
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px 70px}
+
+  /* ---- hero ---- */
+  .hero{text-align:center;padding:44px 0 8px}
+  .badge-logo{
+    width:132px;height:132px;margin:0 auto 20px;border-radius:50%;
+    background:radial-gradient(circle at 50% 40%,#12203f,#0a1327);
+    border:1px solid var(--line-strong);overflow:hidden;
+    box-shadow:0 0 0 6px rgba(233,201,106,.06), 0 12px 40px rgba(0,0,0,.5),
+      inset 0 0 30px rgba(233,201,106,.12);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .badge-logo img{width:94%;height:94%;object-fit:contain}
+  .hero h1{
+    font-size:clamp(24px,6.4vw,34px);font-weight:800;line-height:1.35;
+    background:linear-gradient(180deg,#fff6e0 0%,var(--gold) 55%,var(--gold2) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 2px 10px rgba(233,201,106,.2));
+  }
+  .hero p{color:var(--muted);margin-top:10px;font-size:15px}
+  .rule{width:74px;height:3px;margin:18px auto 0;border-radius:3px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+  /* ---- tabs ---- */
+  .tabs{
+    position:sticky;top:61px;z-index:30;
+    display:flex;gap:10px;justify-content:center;
+    padding:16px 0 18px;margin-top:22px;
+    background:linear-gradient(180deg,rgba(8,16,34,.96) 60%,rgba(8,16,34,0));
+  }
+  .tab{
+    flex:1;max-width:230px;cursor:pointer;user-select:none;
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    padding:13px 14px;border-radius:14px;font-size:15.5px;font-weight:700;
+    color:var(--muted);
+    background:linear-gradient(180deg,#111d38,#0c1631);
+    border:1px solid var(--line);
+    transition:.22s ease;
+  }
+  .tab svg{width:20px;height:20px;fill:currentColor;flex:none}
+  .tab.active{
+    color:#1a1204;
+    background:linear-gradient(180deg,var(--gold-soft),var(--gold2));
+    border-color:var(--gold-soft);
+    box-shadow:0 8px 24px rgba(233,201,106,.28);
+  }
+
+  /* ---- panels ---- */
+  .panel{display:none;animation:fade .35s ease}
+  .panel.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .intro{
+    text-align:center;color:var(--muted);font-size:14px;
+    margin:2px auto 22px;max-width:560px;
+  }
+
+  .step{
+    background:linear-gradient(180deg,rgba(18,29,55,.55),rgba(10,17,34,.55));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px 16px 18px;margin-bottom:22px;
+    box-shadow:0 14px 40px rgba(0,0,0,.35);
+  }
+  .step-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+  .num{
+    flex:none;width:44px;height:44px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:20px;color:#1a1204;
+    background:linear-gradient(180deg,var(--gold-soft),var(--gold2));
+    box-shadow:0 6px 18px rgba(233,201,106,.3);
+  }
+  .step-head h3{font-size:16.5px;font-weight:700;color:var(--text);line-height:1.4}
+  .step-head h3 em{color:var(--gold);font-style:normal;font-weight:800}
+  .shot{
+    display:block;width:100%;border-radius:14px;overflow:hidden;cursor:zoom-in;
+    border:1px solid var(--line);background:#060b18;position:relative;
+  }
+  .shot img{display:block;width:100%;height:auto}
+  .shot::after{
+    content:"🔍";position:absolute;right:10px;bottom:10px;
+    width:34px;height:34px;border-radius:50%;font-size:15px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(6,11,24,.72);border:1px solid var(--line);
+    opacity:0;transition:.2s}
+  .shot:hover::after{opacity:1}
+
+  /* ---- note / footer ---- */
+  .note{
+    text-align:center;margin:8px auto 0;max-width:600px;
+    padding:16px 18px;border-radius:16px;font-size:14px;color:var(--gold-soft);
+    background:linear-gradient(180deg,rgba(233,201,106,.08),rgba(233,201,106,.02));
+    border:1px solid var(--line);
+  }
+  footer{text-align:center;color:var(--muted);font-size:12.5px;padding:34px 18px 10px}
+  footer .fl{display:inline-flex;align-items:center;gap:8px;color:var(--gold)}
+
+  /* ---- lightbox ---- */
+  .lb{position:fixed;inset:0;z-index:80;display:none;
+    align-items:center;justify-content:center;padding:18px;
+    background:rgba(3,6,14,.9);backdrop-filter:blur(4px);cursor:zoom-out}
+  .lb.show{display:flex}
+  .lb img{max-width:100%;max-height:92vh;border-radius:12px;
+    border:1px solid var(--line-strong);box-shadow:0 20px 70px rgba(0,0,0,.7)}
+  .lb .x{position:absolute;top:16px;right:18px;font-size:30px;color:#fff;
+    background:none;border:none;cursor:pointer;line-height:1}
+
+  .totop{position:fixed;right:16px;bottom:16px;z-index:50;
+    width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);
+    background:linear-gradient(180deg,var(--gold-soft),var(--gold2));
+    color:#1a1204;font-size:20px;cursor:pointer;display:none;
+    box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .totop.show{display:block}
+
+  @media(max-width:480px){
+    .tab{font-size:14px;padding:12px 8px}
+    .step-head h3{font-size:15px}
+    .num{width:40px;height:40px;font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <img src="img/logo.jpg" alt="Royalplus789">
+  <b>Royalplus789</b>
+  <span>ຄູ່ມືຕິດຕັ້ງແອັບ</span>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="badge-logo"><img src="img/logo.jpg" alt="Royalplus789 logo"></div>
+    <h1>ຄູ່ມືການຕິດຕັ້ງແອັບ Royalplus789</h1>
+    <p>ຕິດຕັ້ງງ່າຍໆ ພຽງບໍ່ກີ່ຂັ້ນຕອນ — ເລືອກລະບົບຂອງທ່ານດ້ານລຸ່ມ</p>
+    <div class="rule"></div>
+  </section>
+
+  <nav class="tabs">
+    <div class="tab active" data-tab="ios">
+      <svg viewBox="0 0 384 512"><path d="M318.7 268c-.4-42 18.9-73.6 58-96.9-21.9-31.4-55-48.6-98.6-52-41.3-3.2-86.5 24.2-103 24.2-17.5 0-57.4-23.1-88.7-23.1C34.2 121 0 155.6 0 226.1c0 20.8 3.8 42.3 11.4 64.4 10.1 29.1 46.7 100.5 84.8 99.3 19.9-.5 34-14.2 60-14.2 25.2 0 38.2 14.2 60.4 14.2 38.5-.6 71.6-65.5 81.2-94.7-51.6-24.3-49.1-71.1-49.1-71.1zM244.2 95.7c22.6-26.8 20.5-51.2 19.8-60-19.9 1.2-42.9 13.6-56 28.9-14.4 16.5-22.9 36.9-21.1 59.6 21.5 1.7 41.1-9.3 57.3-28.5z"/></svg>
+      iPhone / iOS
+    </div>
+    <div class="tab" data-tab="and">
+      <svg viewBox="0 0 576 512"><path d="M420.6 301.9a24 24 0 1 1 24-24 24 24 0 0 1-24 24m-265.1 0a24 24 0 1 1 24-24 24 24 0 0 1-24 24m273.7-144.5 47.9-83a10 10 0 1 0-17.3-10l-48.5 84.1a301.3 301.3 0 0 0-246.6 0L116.2 64.5a10 10 0 1 0-17.3 10l47.9 83C64.5 202.2 8.2 285.6 0 384h576c-8.2-98.4-64.5-181.8-146.8-226.6"/></svg>
+      Android
+    </div>
+  </nav>
+
+  <!-- ================= iOS ================= -->
+  <section class="panel show" id="ios">
+    <p class="intro">ຕິດຕັ້ງແອັບ Royalplus789 ເທິງ iPhone (iOS) ຕາມ 4 ຂັ້ນຕອນລຸ່ມນີ້</p>
+
+    <div class="step">
+      <div class="step-head"><div class="num">1</div>
+        <h3>ກົດທີ່ຂີດ 3 ຂີດ ມຸມຊ້າຍເທິງ ແລ້ວເລືອກ <em>“ຕິດຕັ້ງແອັບ iOS”</em></h3></div>
+      <a class="shot" href="img/ios_2.jpg"><img src="img/ios_2.jpg" alt="ຂັ້ນຕອນທີ 1 iOS" loading="lazy"></a>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="num">2</div>
+        <h3>ກົດ <em>“ຕິດຕັ້ງ”</em> ແລ້ວກົດ <em>“ອະນຸຍາດ”</em> ເພື່ອດາວໂຫລດແອັບ</h3></div>
+      <a class="shot" href="img/ios_3.jpg"><img src="img/ios_3.jpg" alt="ຂັ້ນຕອນທີ 2 iOS" loading="lazy"></a>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="num">3</div>
+        <h3>ເຂົ້າເມນູ <em>“ຕັ້ງຄ່າ &gt; ທົ່ວໄປ &gt; ການຈັດການ VPN ແລະ ອຸປະກອນ”</em></h3></div>
+      <a class="shot" href="img/ios_4.jpg"><img src="img/ios_4.jpg" alt="ຂັ້ນຕອນທີ 3 iOS" loading="lazy"></a>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="num">4</div>
+        <h3>ເລືອກ <em>“Royalplus789”</em> → ກົດ “ຕິດຕັ້ງ” → ໃສ່ລະຫັດຜ່ານ → ກົດ “ຕິດຕັ້ງ” ອີກຮອບ</h3></div>
+      <a class="shot" href="img/ios_5.jpg"><img src="img/ios_5.jpg" alt="ຂັ້ນຕອນທີ 4 iOS" loading="lazy"></a>
+    </div>
+
+    <div class="note">✅ ຕິດຕັ້ງສຳເລັດ! ຕອນນີ້ທ່ານສາມາດເປີດແອັບ ແລະ ເຂົ້າໃຊ້ງານ Royalplus789 ໄດ້ເລີຍ</div>
+  </section>
+
+  <!-- ================= Android ================= -->
+  <section class="panel" id="and">
+    <p class="intro">ຕິດຕັ້ງແອັບ Royalplus789 ເທິງ Android ຕາມ 2 ຂັ້ນຕອນລຸ່ມນີ້</p>
+
+    <div class="step">
+      <div class="step-head"><div class="num">1</div>
+        <h3>ກົດທີ່ຂີດ 3 ຂີດ ມຸມຊ້າຍເທິງ ແລ້ວເລືອກ <em>“ຕິດຕັ້ງແອັບ Android”</em></h3></div>
+      <a class="shot" href="img/and_2.jpg"><img src="img/and_2.jpg" alt="ຂັ້ນຕອນທີ 1 Android" loading="lazy"></a>
+    </div>
+
+    <div class="step">
+      <div class="step-head"><div class="num">2</div>
+        <h3>ກົດ <em>“ຕິດຕັ້ງ”</em> ແລ້ວກົດ <em>“ອະນຸຍາດ”</em> — ເປັນອັນສຳເລັດ!</h3></div>
+      <a class="shot" href="img/and_3.jpg"><img src="img/and_3.jpg" alt="ຂັ້ນຕອນທີ 2 Android" loading="lazy"></a>
+    </div>
+
+    <div class="note">✅ ຕິດຕັ້ງສຳເລັດ! ກັບສູ່ໜ້າຈໍ ເພື່ອເປີດແອັບໃຊ້ງານໄດ້ເລີຍ</div>
+  </section>
+
+  <footer>
+    <div class="fl">🕐 ຫາກພົບບັນຫາ ຕິດຕໍ່ແອັດມິນໄດ້ຕະຫຼອດ 24 ຊົ່ວໂມງ</div>
+    <div style="margin-top:8px;opacity:.7">© Royalplus789 · ຄູ່ມືການຕິດຕັ້ງແອັບ</div>
+  </footer>
+</div>
+
+<div class="lb" id="lb"><button class="x" aria-label="close">×</button><img src="" alt=""></div>
+<button class="totop" id="totop" aria-label="top">↑</button>
+
+<script>
+  // tabs
+  var tabs=document.querySelectorAll('.tab'), panels=document.querySelectorAll('.panel');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.remove('active')});
+      panels.forEach(function(p){p.classList.remove('show')});
+      t.classList.add('active');
+      document.getElementById(t.dataset.tab).classList.add('show');
+      window.scrollTo({top:document.querySelector('.tabs').offsetTop-70,behavior:'smooth'});
+    });
+  });
+
+  // lightbox
+  var lb=document.getElementById('lb'), lbImg=lb.querySelector('img');
+  document.querySelectorAll('.shot').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      lbImg.src=a.getAttribute('href');
+      lb.classList.add('show');
+    });
+  });
+  lb.addEventListener('click',function(){lb.classList.remove('show');lbImg.src='';});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('show')}});
+
+  // back to top
+  var tt=document.getElementById('totop');
+  window.addEventListener('scroll',function(){
+    tt.classList.toggle('show',window.scrollY>500);
+  });
+  tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+</script>
+</body>
+</html>
