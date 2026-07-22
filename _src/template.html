@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="lo">
+<html lang="%%LANG%%">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a1327">
-<title>ຄູ່ມືຕິດຕັ້ງແອັບ Royalplus789 — iOS & Android</title>
-<meta name="description" content="ຄູ່ມືການຕິດຕັ້ງແອັບ Royalplus789 ສຳລັບ iOS ແລະ Android">
-<meta property="og:title" content="ຄູ່ມືຕິດຕັ້ງແອັບ Royalplus789">
-<meta property="og:description" content="ຕິດຕັ້ງງ່າຍໆ ພຽງບໍ່ກີ່ຂັ້ນຕອນ — ເລືອກລະບົບຂອງທ່ານດ້ານລຸ່ມ">
+<meta name="theme-color" content="%%THEME_COLOR%%">
+<title>%%TITLE%%</title>
+<meta name="description" content="%%DESC%%">
+<meta property="og:title" content="%%OG_TITLE%%">
+<meta property="og:description" content="%%OG_DESC%%">
 <meta property="og:type" content="website">
 <link rel="icon" href="img/logo.jpg">
 <style>
@@ -136,7 +136,7 @@
   }
   .shot img{display:block;width:100%;height:auto}
   .shot::after{
-    content:"🔍 ແຕະເພື່ອຂະຫຍາຍ";position:absolute;right:9px;bottom:9px;
+    content:"%%ZOOM_HINT%%";position:absolute;right:9px;bottom:9px;
     padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;
     color:#f4dd93;letter-spacing:.2px;
     background:rgba(6,11,24,.82);border:1px solid var(--line);
@@ -195,84 +195,52 @@
 <body>
 
 <header class="bar">
-  <img src="img/logo.jpg" alt="Royalplus789">
-  <b>Royalplus789</b>
-  <span>ຄູ່ມືຕິດຕັ້ງແອັບ</span>
+  <img src="img/logo.jpg" alt="%%BRAND%%">
+  <b>%%BRAND%%</b>
+  <span>%%SUBTITLE%%</span>
 </header>
 
 <div class="wrap">
 
   <section class="hero">
-    <div class="badge-logo"><img src="img/logo.jpg" alt="Royalplus789 logo"></div>
-    <h1>ຄູ່ມືການຕິດຕັ້ງແອັບ Royalplus789</h1>
-    <p>ຕິດຕັ້ງງ່າຍໆ ພຽງບໍ່ກີ່ຂັ້ນຕອນ — ເລືອກລະບົບຂອງທ່ານດ້ານລຸ່ມ</p>
+    <div class="badge-logo"><img src="img/logo.jpg" alt="%%BRAND%% logo"></div>
+    <h1>%%HERO_TITLE%%</h1>
+    <p>%%HERO_SUB%%</p>
     <div class="rule"></div>
   </section>
 
   <nav class="tabs">
     <div class="tab active" data-tab="ios">
       <svg viewBox="0 0 384 512"><path d="M318.7 268c-.4-42 18.9-73.6 58-96.9-21.9-31.4-55-48.6-98.6-52-41.3-3.2-86.5 24.2-103 24.2-17.5 0-57.4-23.1-88.7-23.1C34.2 121 0 155.6 0 226.1c0 20.8 3.8 42.3 11.4 64.4 10.1 29.1 46.7 100.5 84.8 99.3 19.9-.5 34-14.2 60-14.2 25.2 0 38.2 14.2 60.4 14.2 38.5-.6 71.6-65.5 81.2-94.7-51.6-24.3-49.1-71.1-49.1-71.1zM244.2 95.7c22.6-26.8 20.5-51.2 19.8-60-19.9 1.2-42.9 13.6-56 28.9-14.4 16.5-22.9 36.9-21.1 59.6 21.5 1.7 41.1-9.3 57.3-28.5z"/></svg>
-      iPhone / iOS
+      %%IOS_TAB%%
     </div>
     <div class="tab" data-tab="and">
       <svg viewBox="0 0 576 512"><path d="M420.6 301.9a24 24 0 1 1 24-24 24 24 0 0 1-24 24m-265.1 0a24 24 0 1 1 24-24 24 24 0 0 1-24 24m273.7-144.5 47.9-83a10 10 0 1 0-17.3-10l-48.5 84.1a301.3 301.3 0 0 0-246.6 0L116.2 64.5a10 10 0 1 0-17.3 10l47.9 83C64.5 202.2 8.2 285.6 0 384h576c-8.2-98.4-64.5-181.8-146.8-226.6"/></svg>
-      Android
+      %%AND_TAB%%
     </div>
   </nav>
 
   <!-- ================= iOS ================= -->
   <section class="panel show" id="ios">
-    <p class="intro">ຕິດຕັ້ງແອັບ Royalplus789 ເທິງ iPhone (iOS) ຕາມ 4 ຂັ້ນຕອນລຸ່ມນີ້</p>
+    <p class="intro">%%IOS_INTRO%%</p>
 
-    <div class="step">
-      <div class="step-head"><div class="num">1</div>
-        <h3>ກົດທີ່ຂີດ 3 ຂີດ ມຸມຊ້າຍເທິງ ແລ້ວເລືອກ <em>“ຕິດຕັ້ງແອັບ iOS”</em></h3></div>
-      <a class="shot" href="img/ios_2.jpg"><img src="img/ios_2.jpg" alt="iOS step 1" loading="lazy"></a>
-    </div>
+%%IOS_STEPS%%
 
-    <div class="step">
-      <div class="step-head"><div class="num">2</div>
-        <h3>ກົດ <em>“ຕິດຕັ້ງ”</em> ແລ້ວກົດ <em>“ອະນຸຍາດ”</em> ເພື່ອດາວໂຫລດແອັບ</h3></div>
-      <a class="shot" href="img/ios_3.jpg"><img src="img/ios_3.jpg" alt="iOS step 2" loading="lazy"></a>
-    </div>
-
-    <div class="step">
-      <div class="step-head"><div class="num">3</div>
-        <h3>ເຂົ້າເມນູ <em>“ຕັ້ງຄ່າ &gt; ທົ່ວໄປ &gt; ການຈັດການ VPN ແລະ ອຸປະກອນ”</em></h3></div>
-      <a class="shot" href="img/ios_4.jpg"><img src="img/ios_4.jpg" alt="iOS step 3" loading="lazy"></a>
-    </div>
-
-    <div class="step">
-      <div class="step-head"><div class="num">4</div>
-        <h3>ເລືອກ <em>“Royalplus789”</em> → ກົດ “ຕິດຕັ້ງ” → ໃສ່ລະຫັດຜ່ານ → ກົດ “ຕິດຕັ້ງ” ອີກຮອບ</h3></div>
-      <a class="shot" href="img/ios_5.jpg"><img src="img/ios_5.jpg" alt="iOS step 4" loading="lazy"></a>
-    </div>
-
-    <div class="note">✅ ຕິດຕັ້ງສຳເລັດ! ຕອນນີ້ທ່ານສາມາດເປີດແອັບ ແລະ ເຂົ້າໃຊ້ງານ Royalplus789 ໄດ້ເລີຍ</div>
+    <div class="note">%%IOS_DONE%%</div>
   </section>
 
   <!-- ================= Android ================= -->
   <section class="panel" id="and">
-    <p class="intro">ຕິດຕັ້ງແອັບ Royalplus789 ເທິງ Android ຕາມ 2 ຂັ້ນຕອນລຸ່ມນີ້</p>
+    <p class="intro">%%AND_INTRO%%</p>
 
-    <div class="step">
-      <div class="step-head"><div class="num">1</div>
-        <h3>ກົດທີ່ຂີດ 3 ຂີດ ມຸມຊ້າຍເທິງ ແລ້ວເລືອກ <em>“ຕິດຕັ້ງແອັບ Android”</em></h3></div>
-      <a class="shot" href="img/and_2.jpg"><img src="img/and_2.jpg" alt="Android step 1" loading="lazy"></a>
-    </div>
+%%AND_STEPS%%
 
-    <div class="step">
-      <div class="step-head"><div class="num">2</div>
-        <h3>ກົດ <em>“ຕິດຕັ້ງ”</em> ແລ້ວກົດ <em>“ອະນຸຍາດ”</em> — ເປັນອັນສຳເລັດ!</h3></div>
-      <a class="shot" href="img/and_3.jpg"><img src="img/and_3.jpg" alt="Android step 2" loading="lazy"></a>
-    </div>
-
-    <div class="note">✅ ຕິດຕັ້ງສຳເລັດ! ກັບສູ່ໜ້າຈໍ ເພື່ອເປີດແອັບໃຊ້ງານໄດ້ເລີຍ</div>
+    <div class="note">%%AND_DONE%%</div>
   </section>
 
   <footer>
-    <div class="fl">🕐 ຫາກພົບບັນຫາ ຕິດຕໍ່ແອັດມິນໄດ້ຕະຫຼອດ 24 ຊົ່ວໂມງ</div>
-    <div style="margin-top:8px;opacity:.7">© Royalplus789 · ຄູ່ມືການຕິດຕັ້ງແອັບ</div>
+    <div class="fl">%%SUPPORT%%</div>
+    <div style="margin-top:8px;opacity:.7">%%FOOTER%%</div>
   </footer>
 </div>
 
