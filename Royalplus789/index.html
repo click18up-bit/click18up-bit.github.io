@@ -20,16 +20,24 @@
     --radius:20px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html{
+    scroll-behavior:smooth;-webkit-text-size-adjust:100%;
+    overflow-x:hidden;               /* keep the document (not body) as the scroll container so position:sticky + momentum scroll work on iOS */
+    background:var(--ink);
+  }
   body{
     font-family:"Noto Sans Lao","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
     color:var(--text);
+    min-height:100vh;line-height:1.6;
+    -webkit-overflow-scrolling:touch;
+  }
+  /* fixed background layer — avoids background-attachment:fixed repaint jank on mobile */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
     background:
       radial-gradient(1100px 620px at 50% -8%, rgba(233,201,106,.14), transparent 60%),
       radial-gradient(900px 700px at 100% 100%, rgba(60,90,160,.12), transparent 60%),
       linear-gradient(180deg,#0a1327 0%,#081022 45%,#060b18 100%);
-    background-attachment:fixed;
-    min-height:100vh;line-height:1.6;overflow-x:hidden;
   }
 
   /* ---- top bar ---- */
