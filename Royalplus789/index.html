@@ -56,7 +56,7 @@
     -webkit-background-clip:text;background-clip:text;color:transparent}
   .bar span{color:var(--muted);font-size:12.5px;margin-left:auto}
 
-  .wrap{max-width:760px;margin:0 auto;padding:0 18px 70px}
+  .wrap{max-width:820px;margin:0 auto;padding:0 14px 70px}
 
   /* ---- hero ---- */
   .hero{text-align:center;padding:44px 0 8px}
@@ -116,7 +116,7 @@
   .step{
     background:linear-gradient(180deg,rgba(18,29,55,.55),rgba(10,17,34,.55));
     border:1px solid var(--line);border-radius:var(--radius);
-    padding:16px 16px 18px;margin-bottom:22px;
+    padding:14px;margin-bottom:20px;overflow:hidden;
     box-shadow:0 14px 40px rgba(0,0,0,.35);
   }
   .step-head{display:flex;align-items:center;gap:13px;margin-bottom:14px}
@@ -129,17 +129,18 @@
   }
   .step-head h3{font-size:16.5px;font-weight:700;color:var(--text);line-height:1.4}
   .step-head h3 em{color:var(--gold);font-style:normal;font-weight:800}
+  /* full-bleed = รูปใหญ่เต็มการ์ด (ทะลุ padding ไปชนขอบ) */
   .shot{
-    display:block;width:100%;border-radius:14px;overflow:hidden;cursor:zoom-in;
-    border:1px solid var(--line);background:#060b18;position:relative;
+    display:block;cursor:zoom-in;position:relative;background:#060b18;
+    margin:0 -14px -14px;border-top:1px solid var(--line);
   }
   .shot img{display:block;width:100%;height:auto}
   .shot::after{
-    content:"🔍";position:absolute;right:10px;bottom:10px;
-    width:34px;height:34px;border-radius:50%;font-size:15px;
-    display:flex;align-items:center;justify-content:center;
-    background:rgba(6,11,24,.72);border:1px solid var(--line);
-    opacity:0;transition:.2s}
+    content:"🔍 ແຕະເພື່ອຂະຫຍາຍ";position:absolute;right:9px;bottom:9px;
+    padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;
+    color:#f4dd93;letter-spacing:.2px;
+    background:rgba(6,11,24,.82);border:1px solid var(--line);
+    opacity:.94;transition:.2s;pointer-events:none}
   .shot:hover::after{opacity:1}
 
   /* ---- note / footer ---- */
@@ -152,15 +153,28 @@
   footer{text-align:center;color:var(--muted);font-size:12.5px;padding:34px 18px 10px}
   footer .fl{display:inline-flex;align-items:center;gap:8px;color:var(--gold)}
 
-  /* ---- lightbox ---- */
+  /* ---- lightbox slider ---- */
   .lb{position:fixed;inset:0;z-index:80;display:none;
-    align-items:center;justify-content:center;padding:18px;
-    background:rgba(3,6,14,.9);backdrop-filter:blur(4px);cursor:zoom-out}
+    align-items:center;justify-content:center;padding:16px;
+    background:rgba(3,6,14,.94);backdrop-filter:blur(5px);
+    touch-action:pan-y;overscroll-behavior:contain}
   .lb.show{display:flex}
-  .lb img{max-width:100%;max-height:92vh;border-radius:12px;
-    border:1px solid var(--line-strong);box-shadow:0 20px 70px rgba(0,0,0,.7)}
-  .lb .x{position:absolute;top:16px;right:18px;font-size:30px;color:#fff;
-    background:none;border:none;cursor:pointer;line-height:1}
+  .lb img{max-width:100%;max-height:86vh;border-radius:12px;
+    border:1px solid var(--line-strong);box-shadow:0 20px 70px rgba(0,0,0,.7);
+    user-select:none;-webkit-user-drag:none;transition:opacity .12s ease}
+  .lb-btn{position:absolute;background:rgba(10,17,34,.62);border:1px solid var(--line);
+    color:#f4dd93;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);line-height:1;
+    transition:background .18s, transform .1s}
+  .lb-btn:active{transform:scale(.92)}
+  .lb-x{top:14px;right:14px;width:44px;height:44px;border-radius:50%;font-size:24px}
+  .lb-prev,.lb-next{top:50%;margin-top:-26px;width:52px;height:52px;
+    border-radius:50%;font-size:30px;padding-bottom:4px}
+  .lb-prev{left:10px}.lb-next{right:10px}
+  .lb-count{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+    color:#f4dd93;font-size:14px;font-weight:700;letter-spacing:.5px;
+    background:rgba(10,17,34,.62);border:1px solid var(--line);
+    border-radius:999px;padding:5px 15px;backdrop-filter:blur(4px)}
 
   .totop{position:fixed;right:16px;bottom:16px;z-index:50;
     width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);
@@ -170,9 +184,11 @@
   .totop.show{display:block}
 
   @media(max-width:480px){
+    .wrap{padding:0 10px 56px}
     .tab{font-size:14px;padding:12px 8px}
     .step-head h3{font-size:15px}
     .num{width:40px;height:40px;font-size:18px}
+    .lb-prev,.lb-next{width:46px;height:46px;font-size:27px;margin-top:-23px}
   }
 </style>
 </head>
@@ -260,7 +276,13 @@
   </footer>
 </div>
 
-<div class="lb" id="lb"><button class="x" aria-label="close">×</button><img src="" alt=""></div>
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lb-btn lb-x"    id="lbX"    aria-label="ປິດ">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="ຮູບກ່ອນໜ້າ">‹</button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="ຮູບຕໍ່ໄປ">›</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-count"><span id="lbCur">1</span> / <span id="lbTot">1</span></div>
+</div>
 <button class="totop" id="totop" aria-label="top">↑</button>
 
 <script>
@@ -276,17 +298,54 @@
     });
   });
 
-  // lightbox
-  var lb=document.getElementById('lb'), lbImg=lb.querySelector('img');
+  // lightbox slider
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'),
+      lbCur=document.getElementById('lbCur'), lbTot=document.getElementById('lbTot'),
+      lbPrev=document.getElementById('lbPrev'), lbNext=document.getElementById('lbNext'),
+      lbX=document.getElementById('lbX'), lbCount=lb.querySelector('.lb-count');
+  var gallery=[], gi=0;
+
+  function lbShow(){
+    lbImg.style.opacity='0';
+    setTimeout(function(){ lbImg.src=gallery[gi]; lbImg.style.opacity='1'; },90);
+    lbCur.textContent=gi+1; lbTot.textContent=gallery.length;
+  }
+  function lbGo(d){ if(gallery.length<2)return; gi=(gi+d+gallery.length)%gallery.length; lbShow(); }
+  function lbOpen(a){
+    var panel=a.closest('.panel');
+    gallery=Array.prototype.map.call(panel.querySelectorAll('.shot'),function(s){return s.getAttribute('href');});
+    gi=Math.max(0,gallery.indexOf(a.getAttribute('href')));
+    var one=gallery.length<2;
+    lbPrev.style.display=one?'none':''; lbNext.style.display=one?'none':''; lbCount.style.display=one?'none':'';
+    lbShow(); lb.classList.add('show'); lb.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow='hidden';   // ล็อกไม่ให้พื้นหลังเลื่อน (html คือตัว scroll)
+  }
+  function lbClose(){ lb.classList.remove('show'); lb.setAttribute('aria-hidden','true');
+    lbImg.src=''; document.documentElement.style.overflow=''; }
+
   document.querySelectorAll('.shot').forEach(function(a){
-    a.addEventListener('click',function(e){
-      e.preventDefault();
-      lbImg.src=a.getAttribute('href');
-      lb.classList.add('show');
-    });
+    a.addEventListener('click',function(e){ e.preventDefault(); lbOpen(a); });
   });
-  lb.addEventListener('click',function(){lb.classList.remove('show');lbImg.src='';});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('show')}});
+  lbX.addEventListener('click',function(e){ e.stopPropagation(); lbClose(); });
+  lbPrev.addEventListener('click',function(e){ e.stopPropagation(); lbGo(-1); });
+  lbNext.addEventListener('click',function(e){ e.stopPropagation(); lbGo(1); });
+  lbImg.addEventListener('click',function(e){ e.stopPropagation(); });   // ไม่ปิดตอนแตะรูป
+  lb.addEventListener('click',function(e){ if(e.target===lb) lbClose(); }); // แตะพื้นหลัง = ปิด
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('show'))return;
+    if(e.key==='Escape')lbClose();
+    else if(e.key==='ArrowRight')lbGo(1);
+    else if(e.key==='ArrowLeft')lbGo(-1);
+  });
+  // swipe ซ้าย/ขวา = เลื่อนรูป, ปัดลง = ปิด
+  var sx=0, sy=0, sw=false;
+  lb.addEventListener('touchstart',function(e){ var t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY; sw=true; },{passive:true});
+  lb.addEventListener('touchend',function(e){
+    if(!sw)return; sw=false;
+    var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)) lbGo(dx<0?1:-1);
+    else if(dy>90 && Math.abs(dy)>Math.abs(dx)) lbClose();
+  },{passive:true});
 
   // back to top
   var tt=document.getElementById('totop');
