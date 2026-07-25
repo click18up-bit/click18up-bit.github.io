@@ -30,20 +30,29 @@ DPI = 170
 JPEG_Q = 86
 
 
-def render_pages(pdf_path, out_dir, prefix):
-    """render หน้า 2..N ของ pdf เป็น img/<prefix>_<k>.jpg ; คืนจำนวนสเต็ป (N-1)."""
+def render_pages(pdf_path, out_dir, prefix, pages=None):
+    """render สเต็ปเป็น img/<prefix>_<i>.jpg (i = 1,2,3... ตามลำดับสเต็ป) ; คืนจำนวนสเต็ป.
+
+    pages = list เลขหน้า (1-based) ที่เป็นสเต็ป — ใช้ตอน PDF รวม iOS+Android ในไฟล์เดียว
+            ถ้าไม่ระบุ = auto: หน้า 2..N (หน้า1=ปก) แบบ PDF แยกไฟล์
+    """
     doc = fitz.open(pdf_path)
     n = doc.page_count
-    if n < 2:
-        doc.close()
-        raise SystemExit(f"{pdf_path}: ต้องมีอย่างน้อย 2 หน้า (ปก + สเต็ป)")
-    for k in range(2, n + 1):
-        pix = doc[k - 1].get_pixmap(dpi=DPI)
+    if pages is None:
+        if n < 2:
+            doc.close()
+            raise SystemExit(f"{pdf_path}: ต้องมีอย่างน้อย 2 หน้า (ปก + สเต็ป)")
+        pages = list(range(2, n + 1))
+    for i, pg in enumerate(pages, start=1):
+        if pg < 1 or pg > n:
+            doc.close()
+            raise SystemExit(f"{pdf_path}: อ้างหน้า {pg} แต่ไฟล์มี {n} หน้า")
+        pix = doc[pg - 1].get_pixmap(dpi=DPI)
         img = Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGB")
-        img.save(os.path.join(out_dir, f"{prefix}_{k}.jpg"),
+        img.save(os.path.join(out_dir, f"{prefix}_{i}.jpg"),
                  "JPEG", quality=JPEG_Q, optimize=True, progressive=True)
     doc.close()
-    return n - 1
+    return len(pages)
 
 
 def render_logo(cfg, brand_dir, out_dir):
@@ -69,7 +78,7 @@ def steps_html(steps, count, prefix, plat_label):
         step = steps[i] if i < len(steps) else {}
         cap = step.get("caption") or f"ຂັ້ນຕອນທີ {n}"     # ถ้าไม่มี caption ใช้ค่า default
         alt = html.escape(step.get("alt", f"{plat_label} step {n}"), quote=True)
-        img = f"img/{prefix}_{n+1}.jpg"                    # หน้า PDF = n+1 (หน้า1=ปก)
+        img = f"img/{prefix}_{n}.jpg"                      # ชื่อรูปอิงลำดับสเต็ป (1,2,3...)
         out.append(
             f'    <div class="step">\n'
             f'      <div class="step-head"><div class="num">{n}</div>\n'
@@ -95,9 +104,11 @@ def build(brand_name):
         shutil.rmtree(out_img)
     os.makedirs(out_img, exist_ok=True)
 
-    # 1) รูป
-    ios_n = render_pages(os.path.join(brand_dir, cfg["ios"].get("pdf", "ios.pdf")),   out_img, "ios")
-    and_n = render_pages(os.path.join(brand_dir, cfg["android"].get("pdf", "android.pdf")), out_img, "and")
+    # 1) รูป (รองรับทั้ง PDF แยกไฟล์ และ PDF รวมไฟล์เดียว + ระบุ pages)
+    ios_n = render_pages(os.path.join(brand_dir, cfg["ios"].get("pdf", "ios.pdf")),
+                         out_img, "ios", cfg["ios"].get("pages"))
+    and_n = render_pages(os.path.join(brand_dir, cfg["android"].get("pdf", "android.pdf")),
+                         out_img, "and", cfg["android"].get("pages"))
     render_logo(cfg, brand_dir, out_img)
 
     # 2) เติม template
