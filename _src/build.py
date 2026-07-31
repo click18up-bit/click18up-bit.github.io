@@ -89,16 +89,33 @@ def steps_html(steps, count, prefix, plat_label):
     return "\n\n".join(out)
 
 
-# ไอคอนดาวน์โหลด (ลูกศรลงกล่อง) ใช้ในปุ่ม CTA
+# ไอคอนดาวน์โหลด (ลูกศรลงกล่อง) / ทางเข้าเว็บ (ลูกโลก)
 _DL_ICON = ('<svg viewBox="0 0 24 24"><path d="M12 3v10.5l3.6-3.6 1.4 1.4L12 17'
             'l-5-5 1.4-1.4L11 13.5V3h1zM5 19h14v2H5v-2z"/></svg>')
+_WEB_ICON = ('<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.6'
+             'a15.6 15.6 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4c.7 1 1.3 2.4 1.7 4h-3.4C10.7 6.4 11.3 5 12 4z'
+             'M4.3 14a8 8 0 010-4h3a17.6 17.6 0 000 4zm.8 2h2.6c.3 1.3.8 2.5 1.4 3.6A8 8 0 015.1 16z'
+             'm2.6-8H5.1a8 8 0 014-3.6A15.6 15.6 0 007.7 8zM12 20c-.7-1-1.3-2.4-1.7-4h3.4c-.4 1.6-1 3-1.7 4z'
+             'm2.1-6H9.9a15.7 15.7 0 010-4h4.2a15.7 15.7 0 010 4zm.8 5.6c.6-1.1 1.1-2.3 1.4-3.6h2.6a8 8 0 01-4 3.6z'
+             'm1.8-5.6a17.6 17.6 0 000-4h3a8 8 0 010 4z"/></svg>')
 
 def cta_html(url, label):
     """ปุ่มดาวน์โหลด/ติดตั้งแอพ — คืน '' ถ้าไม่ได้ตั้ง downloadUrl (เจ้าไหนไม่มีลิงก์ก็ไม่มีปุ่ม)."""
     if not url:
         return ""
     return (f'    <a class="dl" href="{html.escape(url, quote=True)}" '
-            f'target="_blank" rel="noopener noreferrer">{_DL_ICON}{html.escape(label)}</a>\n')
+            f'target="_blank" rel="noopener noreferrer">{_DL_ICON}'
+            f'<span>{html.escape(label)}</span></a>\n')
+
+
+def site_cta_html(url, label, short):
+    """ปุ่มทางเข้าเว็บ (ระดับแบรนด์) — คืน '' ถ้าไม่ได้ตั้ง siteUrl."""
+    if not url:
+        return ""
+    return (f'    <a class="dl dl-alt site-cta" href="{html.escape(url, quote=True)}" '
+            f'data-short="{html.escape(short, quote=True)}" '
+            f'target="_blank" rel="noopener noreferrer">{_WEB_ICON}'
+            f'<span>{html.escape(label)}</span></a>\n')
 
 
 def build(brand_name):
@@ -143,6 +160,9 @@ def build(brand_name):
         "HERO_TITLE":  cfg.get("heroTitle", f"ຄູ່ມືການຕິດຕັ້ງແອັບ {brand}"),
         "HERO_SUB":    cfg.get("heroSub", "ຕິດຕັ້ງງ່າຍໆ ພຽງບໍ່ກີ່ຂັ້ນຕອນ — ເລືອກລະບົບຂອງທ່ານດ້ານລຸ່ມ"),
         "ZOOM_HINT":   cfg.get("zoomHint", "🔍 ແຕະເພື່ອຂະຫຍາຍ"),
+        "SITE_CTA":    site_cta_html(cfg.get("siteUrl"),
+                                     cfg.get("siteLabel", "ເຂົ້າສູ່ເວັບໄຊ້"),
+                                     cfg.get("siteShort", "ເຂົ້າເວັບ")),
         "IOS_TAB":     cfg.get("ios", {}).get("tab", "iPhone / iOS"),
         "AND_TAB":     cfg.get("android", {}).get("tab", "Android"),
         "IOS_INTRO":   cfg["ios"].get("intro", f"ຕິດຕັ້ງແອັບ {brand} ເທິງ iPhone (iOS) ຕາມ {ios_n} ຂັ້ນຕອນລຸ່ມນີ້"),

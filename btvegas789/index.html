@@ -128,6 +128,30 @@
   .dl:active{transform:scale(.98)}
   .dl svg{width:23px;height:23px;fill:currentColor;flex:none}
 
+  /* ปุ่มรอง (ทางเข้าเว็บ) — โทนเข้ม ขอบทอง ไม่แย่งซีนปุ่มโหลด */
+  .dl-alt{
+    color:var(--gold-soft);
+    background:linear-gradient(180deg,#16233f,#0d1830);
+    border:1px solid var(--line-strong);
+    box-shadow:0 8px 22px rgba(0,0,0,.38);
+  }
+  .dl-alt:hover{box-shadow:0 10px 26px rgba(0,0,0,.46)}
+  .site-cta{margin:20px auto 0;max-width:420px;display:block}
+
+  /* แถบปุ่มลอยด้านล่าง — โผล่เฉพาะตอนปุ่มหลักเลื่อนพ้นจอ (เด่นแต่ไม่บังเนื้อหา) */
+  .dlbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:55;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));
+    background:linear-gradient(180deg,rgba(6,11,24,0),rgba(6,11,24,.94) 40%);
+    transform:translateY(125%);transition:transform .3s cubic-bezier(.2,.8,.3,1);
+    pointer-events:none;
+  }
+  .dlbar.show{transform:none;pointer-events:auto}
+  .dlbar-in{display:flex;gap:9px;max-width:560px;margin:0 auto}
+  .dlbar .dl{margin:0;padding:14px 16px;font-size:16px;flex:1;min-width:0}
+  .dlbar .dl-alt{flex:0 0 auto;padding:14px 15px}
+  .dlbar .dl span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
   .step{
     background:linear-gradient(180deg,rgba(18,29,55,.55),rgba(10,17,34,.55));
     border:1px solid var(--line);border-radius:var(--radius);
@@ -195,8 +219,10 @@
     width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);
     background:linear-gradient(180deg,var(--gold-soft),var(--gold2));
     color:#1a1204;font-size:20px;cursor:pointer;display:none;
-    box-shadow:0 8px 24px rgba(0,0,0,.4)}
+    box-shadow:0 8px 24px rgba(0,0,0,.4);
+    transition:bottom .3s cubic-bezier(.2,.8,.3,1)}
   .totop.show{display:block}
+  .totop.lift{bottom:92px}   /* ยกขึ้นไม่ให้ทับแถบปุ่มลอย */
 
   @media(max-width:480px){
     .wrap{padding:0 10px 56px}
@@ -222,6 +248,8 @@
     <h1>ຄູ່ມືການຕິດຕັ້ງແອັບ BTvegas789</h1>
     <p>ຕິດຕັ້ງງ່າຍໆ ພຽງບໍ່ກີ່ຂັ້ນຕອນ — ເລືອກລະບົບຂອງທ່ານດ້ານລຸ່ມ</p>
     <div class="rule"></div>
+    <a class="dl dl-alt site-cta" href="https://btvegas789.github.io/m" data-short="ເຂົ້າເວັບ" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.6a15.6 15.6 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4c.7 1 1.3 2.4 1.7 4h-3.4C10.7 6.4 11.3 5 12 4zM4.3 14a8 8 0 010-4h3a17.6 17.6 0 000 4zm.8 2h2.6c.3 1.3.8 2.5 1.4 3.6A8 8 0 015.1 16zm2.6-8H5.1a8 8 0 014-3.6A15.6 15.6 0 007.7 8zM12 20c-.7-1-1.3-2.4-1.7-4h3.4c-.4 1.6-1 3-1.7 4zm2.1-6H9.9a15.7 15.7 0 010-4h4.2a15.7 15.7 0 010 4zm.8 5.6c.6-1.1 1.1-2.3 1.4-3.6h2.6a8 8 0 01-4 3.6zm1.8-5.6a17.6 17.6 0 000-4h3a8 8 0 010 4z"/></svg><span>ເຂົ້າສູ່ເວັບໄຊ້ BTvegas789</span></a>
+
   </section>
 
   <nav class="tabs">
@@ -238,7 +266,7 @@
   <!-- ================= iOS ================= -->
   <section class="panel show" id="ios">
     <p class="intro">ຕິດຕັ້ງແອັບ BTvegas789 ເທິງ iPhone (iOS) ຕາມ 4 ຂັ້ນຕອນລຸ່ມນີ້</p>
-    <a class="dl" href="https://btvegas789.github.io/btvegas789-ios-install/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 3v10.5l3.6-3.6 1.4 1.4L12 17l-5-5 1.4-1.4L11 13.5V3h1zM5 19h14v2H5v-2z"/></svg>ດາວໂຫລດແອັບ iOS</a>
+    <a class="dl" href="https://btvegas789.github.io/btvegas789-ios-install/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 3v10.5l3.6-3.6 1.4 1.4L12 17l-5-5 1.4-1.4L11 13.5V3h1zM5 19h14v2H5v-2z"/></svg><span>ດາວໂຫລດແອັບ iOS</span></a>
 
     <div class="step">
       <div class="step-head"><div class="num">1</div>
@@ -270,7 +298,7 @@
   <!-- ================= Android ================= -->
   <section class="panel" id="and">
     <p class="intro">ຕິດຕັ້ງແອັບ BTvegas789 ເທິງ Android ຕາມ 2 ຂັ້ນຕອນລຸ່ມນີ້</p>
-    <a class="dl" href="https://btvegas789.github.io/btvegas789-android-install/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 3v10.5l3.6-3.6 1.4 1.4L12 17l-5-5 1.4-1.4L11 13.5V3h1zM5 19h14v2H5v-2z"/></svg>ດາວໂຫລດແອັບ Android</a>
+    <a class="dl" href="https://btvegas789.github.io/btvegas789-android-install/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 3v10.5l3.6-3.6 1.4 1.4L12 17l-5-5 1.4-1.4L11 13.5V3h1zM5 19h14v2H5v-2z"/></svg><span>ດາວໂຫລດແອັບ Android</span></a>
 
     <div class="step">
       <div class="step-head"><div class="num">1</div>
@@ -301,6 +329,12 @@
   <div class="lb-count"><span id="lbCur">1</span> / <span id="lbTot">1</span></div>
 </div>
 <button class="totop" id="totop" aria-label="top">↑</button>
+<div class="dlbar" id="dlbar" hidden>
+  <div class="dlbar-in">
+    <a class="dl dl-alt" id="dlbarSite" target="_blank" rel="noopener noreferrer" hidden></a>
+    <a class="dl" id="dlbarLink" target="_blank" rel="noopener noreferrer" hidden></a>
+  </div>
+</div>
 
 <script>
   // tabs
@@ -312,6 +346,7 @@
       t.classList.add('active');
       document.getElementById(t.dataset.tab).classList.add('show');
       window.scrollTo({top:document.querySelector('.tabs').offsetTop-70,behavior:'smooth'});
+      syncDlBar();   // สลับแท็บ = ปุ่มลอยต้องเปลี่ยนลิงก์ตาม platform
     });
   });
 
@@ -368,8 +403,52 @@
   var tt=document.getElementById('totop');
   window.addEventListener('scroll',function(){
     tt.classList.toggle('show',window.scrollY>500);
-  });
+    updateDlBar();
+  },{passive:true});
   tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  // ---- ปุ่มโหลดลอยด้านล่าง: สะท้อนปุ่มของแท็บที่เปิดอยู่ โผล่เมื่อปุ่มหลักพ้นจอ ----
+  var dlbar=document.getElementById('dlbar'), dlbarLink=document.getElementById('dlbarLink'),
+      dlbarSite=document.getElementById('dlbarSite'), siteCta=document.querySelector('.site-cta'),
+      wrap=document.querySelector('.wrap'), dlInline=null, dlWatch=null;
+  function syncDlBar(){
+    if(dlWatch){dlWatch.disconnect();dlWatch=null;}
+    dlbar.classList.remove('show'); tt.classList.remove('lift');
+    var panel=document.querySelector('.panel.show');
+    var dl=panel?panel.querySelector('a.dl'):null;
+    dlInline=dl||siteCta;              // ยึดปุ่มโหลดเป็นหลัก ถ้าไม่มีก็ยึดปุ่มเข้าเว็บ
+    if(!dlInline){                     // เจ้าที่ไม่ได้ใส่ลิงก์เลย = ไม่มีแถบลอย
+      dlbar.hidden=true; wrap.style.paddingBottom='';
+      return;
+    }
+    dlbar.hidden=false;
+    dlbarLink.hidden=!dl;
+    if(dl){ dlbarLink.href=dl.href; dlbarLink.innerHTML=dl.innerHTML; }
+    dlbarSite.hidden=!siteCta;
+    if(siteCta){                       // ในแถบลอยใช้ข้อความสั้นกว่า จะได้วางคู่กันพอดี
+      dlbarSite.href=siteCta.href;
+      dlbarSite.innerHTML=siteCta.innerHTML.replace(
+        /<span>[\s\S]*<\/span>/, '<span>'+(siteCta.dataset.short||'')+'</span>');
+    }
+    wrap.style.paddingBottom='104px';  // กันแถบลอยบังท้ายหน้า
+    updateDlBar();
+    // IntersectionObserver = ตัวช่วยอีกทาง (บางเบราว์เซอร์ scroll event มาไม่ครบ)
+    if('IntersectionObserver' in window){
+      dlWatch=new IntersectionObserver(function(e){
+        setBar(!e[0].isIntersecting);
+      },{threshold:0});
+      dlWatch.observe(dlInline);
+    }
+  }
+  function setBar(on){
+    dlbar.classList.toggle('show',on);
+    tt.classList.toggle('lift',on);
+  }
+  function updateDlBar(){
+    if(!dlInline)return;
+    setBar(dlInline.getBoundingClientRect().bottom<0);   // ปุ่มหลักเลื่อนพ้นจอด้านบนแล้ว
+  }
+  syncDlBar();
 </script>
 </body>
 </html>
