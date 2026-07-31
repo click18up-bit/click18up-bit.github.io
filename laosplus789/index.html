@@ -110,8 +110,23 @@
 
   .intro{
     text-align:center;color:var(--muted);font-size:14px;
-    margin:2px auto 22px;max-width:560px;
+    margin:2px auto 14px;max-width:560px;
   }
+
+  /* ---- ปุ่มดาวน์โหลด / ติดตั้งแอพ ---- */
+  .dl{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    margin:0 auto 24px;max-width:560px;padding:15px 20px;
+    border-radius:15px;font-size:17px;font-weight:800;text-decoration:none;
+    color:#1a1204;letter-spacing:.2px;
+    background:linear-gradient(180deg,var(--gold-soft),var(--gold2));
+    border:1px solid var(--gold-soft);
+    box-shadow:0 10px 28px rgba(233,201,106,.32);
+    transition:transform .12s ease, box-shadow .2s ease;
+  }
+  .dl:hover{box-shadow:0 12px 34px rgba(233,201,106,.42)}
+  .dl:active{transform:scale(.98)}
+  .dl svg{width:23px;height:23px;fill:currentColor;flex:none}
 
   .step{
     background:linear-gradient(180deg,rgba(18,29,55,.55),rgba(10,17,34,.55));

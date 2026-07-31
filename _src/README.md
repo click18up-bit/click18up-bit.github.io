@@ -32,6 +32,13 @@ _src/
 ## แก้ดีไซน์ให้ทุกเจ้าพร้อมกัน
 แก้ `template.html` แล้วรัน `./build.sh --all` เพื่อปั๊มใหม่ทุกเจ้า
 
+## ปุ่มดาวน์โหลด/ติดตั้งแอพ (ออปชัน)
+ใส่ลิงก์หน้าติดตั้งจริงในแต่ละ platform ได้ที่ `brand.json` → จะมีปุ่มทองเด่นๆ โผล่เหนือขั้นตอน (ถ้าไม่ใส่ = ไม่มีปุ่ม):
+```json
+"ios":     { "downloadUrl": "https://...ios-install/",     "downloadLabel": "ດາວໂຫລດແອັບ iOS" },
+"android": { "downloadUrl": "https://...android-install/", "downloadLabel": "ດາວໂຫລດແອັບ Android" }
+```
+
 ## หมายเหตุ
 - `brand.json` รับ HTML ใน `caption`/`done` ได้ (ใช้ `<em>…</em>` ทำตัวเน้นสีทอง) — เนื้อหามาจากเราเอง ไม่ใช่ input ภายนอก
 - รูป render ที่ DPI 170 JPEG q86 (คมพอ ไฟล์ไม่ใหญ่) ปรับได้ในหัว `build.py`

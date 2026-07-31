@@ -89,6 +89,18 @@ def steps_html(steps, count, prefix, plat_label):
     return "\n\n".join(out)
 
 
+# ไอคอนดาวน์โหลด (ลูกศรลงกล่อง) ใช้ในปุ่ม CTA
+_DL_ICON = ('<svg viewBox="0 0 24 24"><path d="M12 3v10.5l3.6-3.6 1.4 1.4L12 17'
+            'l-5-5 1.4-1.4L11 13.5V3h1zM5 19h14v2H5v-2z"/></svg>')
+
+def cta_html(url, label):
+    """ปุ่มดาวน์โหลด/ติดตั้งแอพ — คืน '' ถ้าไม่ได้ตั้ง downloadUrl (เจ้าไหนไม่มีลิงก์ก็ไม่มีปุ่ม)."""
+    if not url:
+        return ""
+    return (f'    <a class="dl" href="{html.escape(url, quote=True)}" '
+            f'target="_blank" rel="noopener noreferrer">{_DL_ICON}{html.escape(label)}</a>\n')
+
+
 def build(brand_name):
     brand_dir = os.path.join(BRANDS, brand_name)
     cfg_path = os.path.join(brand_dir, "brand.json")
@@ -135,6 +147,8 @@ def build(brand_name):
         "AND_TAB":     cfg.get("android", {}).get("tab", "Android"),
         "IOS_INTRO":   cfg["ios"].get("intro", f"ຕິດຕັ້ງແອັບ {brand} ເທິງ iPhone (iOS) ຕາມ {ios_n} ຂັ້ນຕອນລຸ່ມນີ້"),
         "AND_INTRO":   cfg["android"].get("intro", f"ຕິດຕັ້ງແອັບ {brand} ເທິງ Android ຕາມ {and_n} ຂັ້ນຕອນລຸ່ມນີ້"),
+        "IOS_CTA":     cta_html(cfg["ios"].get("downloadUrl"),     cfg["ios"].get("downloadLabel", "ດາວໂຫລດ / ຕິດຕັ້ງແອັບ iOS")),
+        "AND_CTA":     cta_html(cfg["android"].get("downloadUrl"), cfg["android"].get("downloadLabel", "ດາວໂຫລດ / ຕິດຕັ້ງແອັບ Android")),
         "IOS_STEPS":   ios_steps,
         "AND_STEPS":   and_steps,
         "IOS_DONE":    cfg["ios"].get("done", "✅ ຕິດຕັ້ງສຳເລັດ! ເປີດແອັບໃຊ້ງານໄດ້ເລີຍ"),
