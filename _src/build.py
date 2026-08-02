@@ -151,8 +151,8 @@ def build(brand_name):
     repl = {
         "LANG":        cfg.get("lang", "lo"),
         "THEME_COLOR": cfg.get("themeColor", "#0a1327"),
-        "TITLE":       cfg.get("title",  f"ຄູ່ມືຕິດຕັ້ງແອັບ {brand} — iOS & Android"),
-        "DESC":        cfg.get("desc",   f"ຄູ່ມືການຕິດຕັ້ງແອັບ {brand} ສຳລັບ iOS ແລະ Android"),
+        "TITLE":       cfg.get("title",  f"ຄູ່ມືຕິດຕັ້ງແອັບ {brand} — Android & iOS"),
+        "DESC":        cfg.get("desc",   f"ຄູ່ມືການຕິດຕັ້ງແອັບ {brand} ສຳລັບ Android ແລະ iOS"),
         "OG_TITLE":    cfg.get("ogTitle", f"ຄູ່ມືຕິດຕັ້ງແອັບ {brand}"),
         "OG_DESC":     cfg.get("ogDesc",  cfg.get("heroSub", "")),
         "BRAND":       brand,
