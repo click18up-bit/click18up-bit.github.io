@@ -144,7 +144,7 @@
     <div class="dl2">
       <div class="dlcard">
         <a class="dlbtn" href="dl/Vela-LDB-Bot.zip" download>⬇️ ไฟล์ที่ 1 · โปรแกรมบอท</a>
-        <div class="dlcap"><b>ตัวบอทเอง</b> · ได้ไฟล์ <code>Vela-LDB-Bot.zip</code> (22 ไฟล์)</div>
+        <div class="dlcap"><b>ตัวบอทเอง</b> · ได้ไฟล์ <code>Vela-LDB-Bot.zip</code> (24 ไฟล์)</div>
       </div>
       <div class="dlcard">
         <a class="dlbtn alt" href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip">⬇️ ไฟล์ที่ 2 · ตัวเชื่อมมือถือ (adb)</a>
@@ -161,7 +161,7 @@
       <li>ไฟล์ที่ 2 (adb) แตกออกมา จะได้โฟลเดอร์ชื่อ <code>platform-tools</code> — ข้างในมี <code>adb.exe</code></li>
       <li>เอาไฟล์ของบอท (จากไฟล์ที่ 1) <b>ทั้งหมดไปวางในโฟลเดอร์ platform-tools นี้</b> ให้อยู่รวมกัน</li>
     </ol>
-    <p class="muted">สุดท้ายในโฟลเดอร์เดียวควรมี: <code>adb.exe</code> · <code>START.bat</code> · <code>SETUP.bat</code> · <code>_find.bat</code> · <code>ldb_agent.py</code> · <code>config.json</code> · <code>ADBKeyboard.apk</code> · โฟลเดอร์ <code>msg</code></p>
+    <p class="muted">สุดท้ายในโฟลเดอร์เดียวควรมี: <code>adb.exe</code> · <code>START.bat</code> · <code>SETUP.bat</code> · <code>ใส่รหัส.bat</code> · <code>_find.bat</code> · <code>ldb_agent.py</code> · <code>config.json</code> · <code>ADBKeyboard.apk</code> · โฟลเดอร์ <code>msg</code></p>
     <div class="warnbox" style="margin-top:10px">
       <div class="e">⚠️</div>
       <p><b>ต้องเอาไปให้ครบ</b> โดยเฉพาะโฟลเดอร์ <code>msg</code> กับไฟล์ <code>_find.bat</code> — ถ้าลืม หน้าจอจะขึ้นว่า <i>“The system cannot find the file”</i> แทนข้อความภาษาไทย</p>
@@ -203,10 +203,18 @@
   </div>
 
   <div class="step">
-    <div class="sh"><div class="n">5</div><div class="h3">ใส่รหัสในไฟล์ config.json</div><span class="what">ไฟล์ตั้งค่าของบอท</span></div>
-    <p><b>หารหัสที่ไหน:</b> เข้าเว็บแอดมิน Vela → เมนู <b>ตั้งค่า</b> → การ์ด <b>“บอทถอนอัตโนมัติ (LDB)”</b> → กดแถบ <b>“🔑 รหัสสำหรับใส่ในบอท”</b> → จะเห็น 3 ค่า: <code>vela_url</code> · <code>feed_token</code> · <code>feed_secret</code> (มีปุ่มก๊อปให้)</p>
-    <p>แล้วคลิกขวาไฟล์ <code>config.json</code> → เปิดด้วย <b>Notepad</b> → วาง 3 ค่านั้นลงในช่องชื่อเดียวกัน → บันทึก (Save)</p>
-    <p class="muted">3 ค่านี้คือ “กุญแจ” ที่ทำให้บอทกับระบบ Vela คุยกันได้ · <b>feed_secret เป็นรหัสลับ อย่าให้หลุด</b></p>
+    <div class="sh"><div class="n">5</div><div class="h3">ใส่รหัส — ดับเบิลคลิก <span class="chip">ใส่รหัส</span></div><span class="what">เขียนไฟล์ให้เอง</span></div>
+    <p><b>หารหัสที่ไหน:</b> เข้าเว็บแอดมิน Vela → เมนู <b>ตั้งค่า</b> → การ์ด <b>“บอทถอนอัตโนมัติ (LDB)”</b> → กดแถบ <b>“🔑 รหัสสำหรับใส่ในบอท”</b> → มีปุ่มก๊อป 2 ค่า: <code>feed_token</code> · <code>feed_secret</code></p>
+    <ol>
+      <li>ดับเบิลคลิกไฟล์ <b>“ใส่รหัส”</b></li>
+      <li>มันถามทีละค่า — <b>คลิกขวาในหน้าต่างดำ = วาง</b> แล้วกด Enter (URL กด Enter ผ่านได้เลย)</li>
+      <li>ขึ้น <b>“เชื่อมต่อผ่าน — รหัสถูกต้อง”</b> = เสร็จ · ถ้าขึ้นแดง = ก๊อปรหัสผิด ก๊อปใหม่แล้วรันซ้ำ</li>
+    </ol>
+    <div class="warnbox" style="margin-top:10px">
+      <div class="e">✋</div>
+      <p><b>ไม่ต้องเปิด config.json แก้เองด้วย Notepad</b> — แก้มือพลาดง่าย (ลืมลบ <code>&lt;&lt;&gt;&gt;</code> / Windows แอบเติม <code>.txt</code>) แล้วบอทฟ้อง error งง ๆ ให้ใช้ปุ่ม “ใส่รหัส” เท่านั้น</p>
+    </div>
+    <p class="muted"><b>feed_secret เป็นรหัสลับของร้าน อย่าให้หลุดออกนอก</b> · แก้รหัสภายหลังก็ดับเบิลคลิก “ใส่รหัส” ซ้ำได้</p>
   </div>
 
   <div class="step">
@@ -247,7 +255,7 @@
     <p><b>ก่อนเปิดจ่ายเงินจริง:</b> รันแบบ <b>“ทดสอบ” (dry_run)</b> ก่อน — บอทจะทำทุกขั้นถึงหน้ายืนยันแล้วหยุด ให้ดูว่ามันตรวจถูกใบไหม · มั่นใจแล้วค่อยเปิดสวิตช์จ่ายจริงที่หน้า Vela (ให้ช่าง/เจ้าของเป็นคนสลับ)</p>
   </div>
 
-  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v8)</footer>
+  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v9)</footer>
 </div>
 </body>
 </html>
