@@ -90,7 +90,14 @@
     background:var(--surface-2);text-align:center}
   .dlbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;
     background:var(--accent);color:#fff;font-weight:800;font-size:16px;text-decoration:none}
-  .dlnote{font-size:13px;color:var(--ink-2);margin-top:10px;line-height:1.7}
+  .dlnote{font-size:13px;color:var(--ink-2);margin-top:12px;line-height:1.7}
+  .dl2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:520px){.dl2{grid-template-columns:1fr}}
+  .dlcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 12px}
+  .dlcard .dlbtn{width:100%;justify-content:center;font-size:15px;padding:11px 12px}
+  .dlbtn.alt{background:transparent;color:var(--accent-ink);border:2px solid var(--accent)}
+  .dlcap{font-size:12.5px;color:var(--ink-2);margin-top:8px;line-height:1.5}
+  .dlcap b{color:var(--ink)}
 
   .info{display:flex;gap:11px;padding:14px 16px;border-radius:13px;margin:6px 0 2px;
     background:var(--info-bg);border:1px solid var(--info-line)}
@@ -134,18 +141,27 @@
   </div>
 
   <div class="dlbox">
-    <a class="dlbtn" href="https://drive.google.com/uc?export=download&id=1zmqZt4dUP55CI1l3LdQ5QbUc2B4jbE_H">⬇️ โหลดโปรแกรมบอท (Vela-LDB-Bot.zip)</a>
-    <div class="dlnote">
-      และต้องโหลดตัวเชื่อมมือถืออีกตัว →
-      <a href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip">โหลด adb จาก Google</a><br>
-      <span class="muted">(2 ไฟล์นี้จะเอามารวมกันในขั้นที่ 1)</span>
+    <div class="dl2">
+      <div class="dlcard">
+        <a class="dlbtn" href="https://drive.google.com/uc?export=download&id=1zmqZt4dUP55CI1l3LdQ5QbUc2B4jbE_H">⬇️ ไฟล์ที่ 1 · โปรแกรมบอท</a>
+        <div class="dlcap"><b>ตัวบอทเอง</b> · ได้ไฟล์ <code>Vela-LDB-Bot.zip</code></div>
+      </div>
+      <div class="dlcard">
+        <a class="dlbtn alt" href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip">⬇️ ไฟล์ที่ 2 · ตัวเชื่อมมือถือ (adb)</a>
+        <div class="dlcap"><b>ตัวที่ทำให้คอมสั่งงานมือถือได้</b> · ของ Google ได้ไฟล์ชื่อ <code>platform-tools</code></div>
+      </div>
     </div>
+    <div class="dlnote">โหลดครบทั้ง 2 ไฟล์ แล้วเอามารวมกันในขั้นที่ 1 ข้างล่าง</div>
   </div>
 
   <div class="step">
     <div class="sh"><div class="n">1</div><div class="h3">รวมไฟล์ไว้โฟลเดอร์เดียว</div></div>
-    <p>แตกไฟล์ zip ทั้ง 2 อัน แล้ว <b>เอาไฟล์ของบอททั้งหมดไปวางในโฟลเดอร์ที่มี <code>adb.exe</code></b> (โฟลเดอร์ platform-tools) — ให้อยู่รวมกันหมด</p>
-    <p class="muted">ในโฟลเดอร์เดียวกันควรมี: <code>adb.exe</code> · <code>START.bat</code> · <code>SETUP.bat</code> · <code>ldb_agent.py</code> · <code>config.json</code> · <code>ADBKeyboard.apk</code></p>
+    <p><b>แตกไฟล์ zip ทั้ง 2 อัน</b> (คลิกขวาไฟล์ → แตกไฟล์ / Extract)</p>
+    <ol>
+      <li>ไฟล์ที่ 2 (adb) แตกออกมา จะได้โฟลเดอร์ชื่อ <code>platform-tools</code> — ข้างในมี <code>adb.exe</code></li>
+      <li>เอาไฟล์ของบอท (จากไฟล์ที่ 1) <b>ทั้งหมดไปวางในโฟลเดอร์ platform-tools นี้</b> ให้อยู่รวมกัน</li>
+    </ol>
+    <p class="muted">สุดท้ายในโฟลเดอร์เดียวควรมี: <code>adb.exe</code> · <code>START.bat</code> · <code>SETUP.bat</code> · <code>ldb_agent.py</code> · <code>config.json</code> · <code>ADBKeyboard.apk</code></p>
     <div class="info">
       <div class="e">💾</div>
       <p><b>วางไดร์ไหนก็ได้</b> — จะเป็น <code>C:</code>, <code>D:</code>, <code>E:</code> หรือแฟลชไดร์ก็ได้ ไม่จำเป็นต้องเป็นไดร์ C · โปรแกรมหาที่อยู่ตัวเองอัตโนมัติ ขอแค่ไฟล์ทุกอย่าง<b>อยู่โฟลเดอร์เดียวกัน</b></p>
@@ -221,7 +237,7 @@
     <p><b>ก่อนเปิดจ่ายเงินจริง:</b> รันแบบ <b>“ทดสอบ” (dry_run)</b> ก่อน — บอทจะทำทุกขั้นถึงหน้ายืนยันแล้วหยุด ให้ดูว่ามันตรวจถูกใบไหม · มั่นใจแล้วค่อยเปิดสวิตช์จ่ายจริงที่หน้า Vela (ให้ช่าง/เจ้าของเป็นคนสลับ)</p>
   </div>
 
-  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v4)</footer>
+  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v5)</footer>
 </div>
 </body>
 </html>
