@@ -195,8 +195,9 @@
 
   <div class="step">
     <div class="sh"><div class="n">5</div><div class="h3">ใส่รหัสในไฟล์ config.json</div><span class="what">ไฟล์ตั้งค่าของบอท</span></div>
-    <p>คลิกขวาไฟล์ <code>config.json</code> → เปิดด้วย <b>Notepad</b> → ใส่ 2 รหัสจากหน้าตั้งค่า Vela ลงในช่อง <code>feed_token</code> กับ <code>feed_secret</code> → บันทึก (Save)</p>
-    <p class="muted">รหัส 2 ตัวนี้คือ “กุญแจ” ที่ทำให้บอทกับระบบ Vela คุยกันได้</p>
+    <p><b>หารหัสที่ไหน:</b> เข้าเว็บแอดมิน Vela → เมนู <b>ตั้งค่า</b> → การ์ด <b>“บอทถอนอัตโนมัติ (LDB)”</b> → กดแถบ <b>“🔑 รหัสสำหรับใส่ในบอท”</b> → จะเห็น 3 ค่า: <code>vela_url</code> · <code>feed_token</code> · <code>feed_secret</code> (มีปุ่มก๊อปให้)</p>
+    <p>แล้วคลิกขวาไฟล์ <code>config.json</code> → เปิดด้วย <b>Notepad</b> → วาง 3 ค่านั้นลงในช่องชื่อเดียวกัน → บันทึก (Save)</p>
+    <p class="muted">3 ค่านี้คือ “กุญแจ” ที่ทำให้บอทกับระบบ Vela คุยกันได้ · <b>feed_secret เป็นรหัสลับ อย่าให้หลุด</b></p>
   </div>
 
   <div class="step">
@@ -237,7 +238,7 @@
     <p><b>ก่อนเปิดจ่ายเงินจริง:</b> รันแบบ <b>“ทดสอบ” (dry_run)</b> ก่อน — บอทจะทำทุกขั้นถึงหน้ายืนยันแล้วหยุด ให้ดูว่ามันตรวจถูกใบไหม · มั่นใจแล้วค่อยเปิดสวิตช์จ่ายจริงที่หน้า Vela (ให้ช่าง/เจ้าของเป็นคนสลับ)</p>
   </div>
 
-  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v5)</footer>
+  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v6)</footer>
 </div>
 </body>
 </html>
