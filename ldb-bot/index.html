@@ -144,14 +144,18 @@
     <div class="dl2">
       <div class="dlcard">
         <a class="dlbtn" href="dl/Vela-LDB-Bot.zip" download>⬇️ ไฟล์ที่ 1 · โปรแกรมบอท</a>
-        <div class="dlcap"><b>ตัวบอทเอง</b> · ได้ไฟล์ <code>Vela-LDB-Bot.zip</code> (24 ไฟล์)</div>
+        <div class="dlcap"><b>ตัวบอทเอง</b> · ได้ไฟล์ <code>Vela-LDB-Bot.zip</code> (31 ไฟล์)</div>
       </div>
       <div class="dlcard">
         <a class="dlbtn alt" href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip">⬇️ ไฟล์ที่ 2 · ตัวเชื่อมมือถือ (adb)</a>
         <div class="dlcap"><b>ตัวที่ทำให้คอมสั่งงานมือถือได้</b> · ของ Google ได้ไฟล์ชื่อ <code>platform-tools</code></div>
       </div>
+      <div class="dlcard">
+        <a class="dlbtn alt" href="https://github.com/senzhk/ADBKeyBoard/raw/master/ADBKeyboard.apk">⬇️ ไฟล์ที่ 3 · คีย์บอร์ดสำหรับพิมพ์</a>
+        <div class="dlcap"><b>ตัวที่ทำให้บอทพิมพ์เลขบัญชีลงแอปธนาคารได้</b> · ได้ไฟล์ <code>ADBKeyboard.apk</code> (ไฟล์เล็ก ~17KB)</div>
+      </div>
     </div>
-    <div class="dlnote">โหลดครบทั้ง 2 ไฟล์ แล้วเอามารวมกันในขั้นที่ 1 ข้างล่าง</div>
+    <div class="dlnote">โหลดครบทั้ง 3 ไฟล์ แล้วเอามารวมกันในขั้นที่ 1 ข้างล่าง</div>
   </div>
 
   <div class="step">
@@ -161,7 +165,7 @@
       <li>ไฟล์ที่ 2 (adb) แตกออกมา จะได้โฟลเดอร์ชื่อ <code>platform-tools</code> — ข้างในมี <code>adb.exe</code></li>
       <li>เอาไฟล์ของบอท (จากไฟล์ที่ 1) <b>ทั้งหมดไปวางในโฟลเดอร์ platform-tools นี้</b> ให้อยู่รวมกัน</li>
     </ol>
-    <p class="muted">สุดท้ายในโฟลเดอร์เดียวควรมี: <code>adb.exe</code> · <code>START.bat</code> · <code>SETUP.bat</code> · <code>ใส่รหัส.bat</code> · <code>_find.bat</code> · <code>ldb_agent.py</code> · <code>config.json</code> · <code>ADBKeyboard.apk</code> · โฟลเดอร์ <code>msg</code></p>
+    <p class="muted">สุดท้ายในโฟลเดอร์เดียวควรมี: <code>adb.exe</code> · <code>ADBKeyboard.apk</code> · <code>SETUP.bat</code> · <code>START.bat</code> · <code>ใส่รหัส.bat</code> · <code>โหมดจ่ายจริง.bat</code> · <code>สร้างทางลัด.bat</code> · <code>_find.bat</code> · <code>ldb_agent.py</code> · <code>setcfg.py</code> · <code>setmode.py</code> · <code>config.json</code> · <code>Vela.ico</code> · โฟลเดอร์ <code>msg</code></p>
     <div class="warnbox" style="margin-top:10px">
       <div class="e">⚠️</div>
       <p><b>ต้องเอาไปให้ครบ</b> โดยเฉพาะโฟลเดอร์ <code>msg</code> กับไฟล์ <code>_find.bat</code> — ถ้าลืม หน้าจอจะขึ้นว่า <i>“The system cannot find the file”</i> แทนข้อความภาษาไทย</p>
@@ -236,7 +240,7 @@
   </div>
   <div class="daily">
     <div class="dnum">2</div>
-    <div class="t"><div class="b">ดับเบิลคลิกไฟล์ <span class="chip">START</span></div><div class="s">อยู่ในโฟลเดอร์บอท (ชื่อไฟล์ “เริ่มบอท”) · คลิก 2 ที</div></div>
+    <div class="t"><div class="b">ดับเบิลคลิก<span class="chip">ไอคอนบนหน้าจอ</span></div><div class="s">ไอคอนลูกศรทอง ชื่อ “Vela - bot thon” · หรือไฟล์ <b>START</b> ในโฟลเดอร์ก็ได้ · คลิก 2 ที</div></div>
     <div class="emo">🖱️</div>
   </div>
   <div class="daily">
@@ -252,10 +256,19 @@
 
   <div class="warnbox">
     <div class="e">🔒</div>
-    <p><b>ก่อนเปิดจ่ายเงินจริง:</b> รันแบบ <b>“ทดสอบ” (dry_run)</b> ก่อน — บอทจะทำทุกขั้นถึงหน้ายืนยันแล้วหยุด ให้ดูว่ามันตรวจถูกใบไหม · มั่นใจแล้วค่อยเปิดสวิตช์จ่ายจริงที่หน้า Vela (ให้ช่าง/เจ้าของเป็นคนสลับ)</p>
+    <p><b>ตอนโหลดมาใหม่ บอทเป็น “โหมดทดสอบ” อยู่ — ยังไม่จ่ายเงินจริง</b><br>
+    มันจะเดินครบทุกขั้นถึงหน้ายืนยัน ตรวจชื่อ/บัญชี/ยอดให้ดู แล้ว<b>กดถอยกลับ ไม่กดจ่าย</b> · ใช้ดูว่ามันทำถูกใบไหมก่อน</p>
+    <p class="muted" style="margin-top:10px">เปิดจ่ายจริงต้องเปิด <b>2 สวิตช์</b> ครบทั้งคู่ ขาดอันใดอันหนึ่งบอทไม่จ่าย:</p>
+    <ol style="margin:8px 0 0;padding-left:22px;line-height:1.9">
+      <li><b>ที่เครื่องคอมนี้</b> — ดับเบิลคลิก <code>โหมดจ่ายจริง.bat</code> แล้วพิมพ์ <code>JAI</code> ยืนยัน<br>
+        <span class="muted">(สลับกลับเป็นโหมดทดสอบก็กดไฟล์เดิม)</span></li>
+      <li><b>ที่หน้าแอดมิน Vela</b> — เมนู <b>ตั้งค่า</b> → การ์ด <b>“บอทถอนอัตโนมัติ (LDB)”</b> → เปิด <b>จ่ายคิวให้บอท</b><br>
+        <span class="muted">(อันนี้คุมว่า Vela จะส่งใบถอนมาให้บอททำไหม คนละตัวกับข้อ 1)</span></li>
+    </ol>
+    <p style="margin-top:10px"><b>ให้ช่างหรือเจ้าของเป็นคนเปิดเท่านั้น</b> — เงินออกจากบัญชีจริง เรียกคืนไม่ได้</p>
   </div>
 
-  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 18 ส.ค. 2026 (v11)</footer>
+  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 18 ส.ค. 2026 (v12)</footer>
 </div>
 </body>
 </html>
