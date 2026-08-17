@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<title>ติดตั้งบอทถอน LDB</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --surface:#ffffff; --surface-2:#eef0f4; --ink:#181a1f; --ink-2:#5a616e;
+    --line:#e2e5ec; --accent:#7c3aed; --accent-ink:#6a29d6;
+    --ok:#158048; --ok-bg:#e6f6ec; --ok-line:#9fd9b4;
+    --warn-bg:#fff4e6; --warn-line:#f0c384; --warn-ink:#9a5a12;
+    --code-bg:#1b1b22; --code-ink:#f0eef7;
+  }
+  :root:not([data-theme="light"]){ @media (prefers-color-scheme:dark){
+    --bg:#0e0f13; --surface:#181a20; --surface-2:#20232c; --ink:#f0f1f4; --ink-2:#a6adba;
+    --line:#2a2e39; --accent:#a78bfa; --accent-ink:#c4b5fd;
+    --ok:#4cc985; --ok-bg:#0f2a1c; --ok-line:#1f5b3b;
+    --warn-bg:#2a1f10; --warn-line:#5c4420; --warn-ink:#e6a95c;
+    --code-bg:#0a0a0e; --code-ink:#f0eef7;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0e0f13; --surface:#181a20; --surface-2:#20232c; --ink:#f0f1f4; --ink-2:#a6adba;
+    --line:#2a2e39; --accent:#a78bfa; --accent-ink:#c4b5fd;
+    --ok:#4cc985; --ok-bg:#0f2a1c; --ok-line:#1f5b3b;
+    --warn-bg:#2a1f10; --warn-line:#5c4420; --warn-ink:#e6a95c;
+    --code-bg:#0a0a0e; --code-ink:#f0eef7;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Sarabun","Noto Sans Thai",system-ui,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:30px 18px 70px}
+
+  .head{text-align:center;margin-bottom:26px}
+  .robot{font-size:52px;line-height:1}
+  h1{margin:10px 0 6px;font-size:clamp(26px,6vw,36px);letter-spacing:-.02em}
+  .head p{margin:0;color:var(--ink-2);font-size:16px}
+
+  .daily-title{display:flex;align-items:center;justify-content:center;gap:10px;
+    font-size:18px;font-weight:800;margin:6px 0 18px;color:var(--ok)}
+  .daily-title .dot{width:9px;height:9px;border-radius:50%;background:var(--ok)}
+
+  .bigstep{display:flex;align-items:center;gap:18px;padding:22px 20px;margin-bottom:14px;
+    border:2px solid var(--line);border-radius:20px;background:var(--surface)}
+  .bignum{flex:0 0 56px;height:56px;border-radius:16px;display:grid;place-items:center;
+    font-size:26px;font-weight:900;background:var(--accent);color:#fff}
+  .bigstep .txt{flex:1;min-width:0}
+  .bigstep .txt .big{font-size:20px;font-weight:800;line-height:1.3}
+  .bigstep .txt .small{font-size:14.5px;color:var(--ink-2);margin-top:3px}
+  .bigstep .emo{font-size:34px;flex:0 0 auto}
+  .file-chip{display:inline-block;font-weight:800;color:var(--accent-ink);
+    background:var(--surface-2);border:1px solid var(--line);border-radius:9px;
+    padding:2px 10px;margin:0 2px;white-space:nowrap}
+
+  .safe{display:flex;gap:13px;align-items:flex-start;padding:16px 18px;border-radius:16px;
+    background:var(--ok-bg);border:1px solid var(--ok-line);margin:22px 0 8px}
+  .safe .emo{font-size:24px}
+  .safe b{color:var(--ok)}
+  .safe p{margin:0;font-size:15px}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:38px 0 18px;color:var(--ink-2)}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+  .divider span{font-size:13px;font-weight:700;letter-spacing:.04em}
+
+  .once{border:1px solid var(--line);border-radius:18px;background:var(--surface);overflow:hidden}
+  .once-head{padding:16px 20px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+  .once-head .t{font-size:16px;font-weight:800}
+  .once-head .s{font-size:13.5px;color:var(--ink-2);margin-top:2px}
+  .once-body{padding:8px 20px 20px}
+  .orow{display:flex;gap:13px;padding:13px 0;border-bottom:1px dashed var(--line)}
+  .orow:last-child{border-bottom:none}
+  .oi{flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    font-size:13px;font-weight:800;background:var(--surface-2);color:var(--accent-ink);border:1px solid var(--line)}
+  .orow .ot{flex:1;font-size:15px}
+  .orow .ot b{color:var(--ink)}
+  .orow .ot .hint{font-size:13px;color:var(--ink-2);margin-top:2px}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;
+    background:var(--surface-2);padding:1px 7px;border-radius:6px;border:1px solid var(--line);white-space:nowrap}
+  pre{margin:8px 0 0;background:var(--code-bg);color:var(--code-ink);border-radius:10px;
+    padding:11px 14px;overflow-x:auto;font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
+
+  .warnbox{display:flex;gap:11px;padding:13px 16px;border-radius:14px;margin-top:18px;
+    background:var(--warn-bg);border:1px solid var(--warn-line)}
+  .warnbox .emo{font-size:20px}
+  .warnbox p{margin:0;font-size:14px;color:var(--warn-ink)}
+  .warnbox b{color:var(--warn-ink)}
+
+  footer{margin-top:34px;text-align:center;font-size:12.5px;color:var(--ink-2)}
+
+  .dlbox{margin:0 0 16px;padding:16px;border-radius:14px;border:1px dashed var(--accent);
+    background:var(--surface-2);text-align:center}
+  .dlbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;
+    background:var(--accent);color:#fff;font-weight:800;font-size:16px;text-decoration:none}
+  .dlbtn.pending{background:var(--surface);color:var(--ink-2);border:1px solid var(--line);cursor:default}
+  .dlnote{font-size:13px;color:var(--ink-2);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="robot">🤖</div>
+    <h1>บอทถอนอัตโนมัติ</h1>
+    <p>โปรแกรมกดโอนเงินให้ลูกค้าเอง ตามคิวถอนในระบบ</p>
+  </div>
+
+  <div class="daily-title"><span class="dot"></span>ใช้ทุกวัน — แค่ 3 ขั้น</div>
+
+  <div class="bigstep">
+    <div class="bignum">1</div>
+    <div class="txt"><div class="big">เสียบสายมือถือเข้าคอม</div><div class="small">มือถือเครื่องที่มีแอป LDB · เสียบสาย USB</div></div>
+    <div class="emo">🔌</div>
+  </div>
+
+  <div class="bigstep">
+    <div class="bignum">2</div>
+    <div class="txt"><div class="big">ดับเบิลคลิกไฟล์ <span class="file-chip">START</span></div><div class="small">(ชื่อไฟล์ “เริ่มบอท”) ในโฟลเดอร์บอท · คลิก 2 ที เท่านั้น</div></div>
+    <div class="emo">🖱️</div>
+  </div>
+
+  <div class="bigstep">
+    <div class="bignum">3</div>
+    <div class="txt"><div class="big">เสร็จ! บอททำงานเอง</div><div class="small">มันจะกดโอนตามคิวให้เรื่อย ๆ · <b>อยากหยุด = ปิดหน้าต่างสีดำ</b></div></div>
+    <div class="emo">✅</div>
+  </div>
+
+  <div class="safe">
+    <div class="emo">🛡️</div>
+    <p><b>ปลอดภัย ไม่ต้องเฝ้า</b> — ก่อนกดโอนทุกครั้ง บอทเช็ค ชื่อผู้รับ + เลขบัญชี + ยอดเงิน ให้ตรงกับใบถอนก่อนเสมอ ถ้าไม่ตรง <b>มันจะไม่โอน</b> แล้วส่งให้คนตรวจแทน</p>
+  </div>
+
+  <div class="divider"><span>ตั้งครั้งแรก · ทำครั้งเดียว</span></div>
+
+  <div class="once">
+    <div class="once-head">
+      <div class="t">🔧 ตั้งครั้งแรก (ให้ช่าง หรือ เจ้าของ ทำ)</div>
+      <div class="s">ทำครั้งเดียวตอนแรกสุด · คนใช้งานทุกวันไม่ต้องยุ่งกับส่วนนี้</div>
+    </div>
+    <div class="once-body">
+      <div class="dlbox">
+        <a class="dlbtn" href="https://drive.google.com/uc?export=download&id=1zmqZt4dUP55CI1l3LdQ5QbUc2B4jbE_H">⬇️ โหลดบอทถอน LDB</a>
+        <div class="dlnote">
+          แตกไฟล์ <b>Vela-LDB-Bot.zip</b> แล้ววางในคอม (โฟลเดอร์เดียวกับ adb)<br>
+          ยังต้องมี <b>adb</b> ด้วย → <a href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip">โหลด adb จาก Google</a>
+        </div>
+      </div>
+      <div class="orow"><div class="oi">1</div><div class="ot"><b>เอาโฟลเดอร์บอทไปวางในคอม</b><div class="hint">วางรวมกับ adb (โฟลเดอร์ platform-tools) ให้อยู่ที่เดียวกัน</div></div></div>
+      <div class="orow"><div class="oi">2</div><div class="ot"><b>ลง Python หนึ่งครั้ง</b><pre>winget install Python.Python.3.12</pre></div></div>
+      <div class="orow"><div class="oi">3</div><div class="ot"><b>เปิด USB debugging ในมือถือ</b><div class="hint">ตั้งค่า → เกี่ยวกับโทรศัพท์ → แตะ “หมายเลขบิลด์” 7 ครั้ง → ตัวเลือกนักพัฒนา → เปิด USB debugging → เสียบสาย → กด “อนุญาต” บนมือถือ</div></div></div>
+      <div class="orow"><div class="oi">4</div><div class="ot"><b>ใส่ค่าที่หน้าตั้งค่า Vela</b><div class="hint">การ์ด “บอทถอนอัตโนมัติ (LDB)” → รุ่นมือถือ + บัญชีต้นทาง + PIN + เพดาน</div></div></div>
+      <div class="orow"><div class="oi">5</div><div class="ot"><b>สร้างไฟล์ <code>config.json</code></b><div class="hint">ก๊อปจาก config.example.json แล้วใส่ feed_token + feed_secret (เอาจากหน้า Vela)</div></div></div>
+      <div class="orow"><div class="oi">6</div><div class="ot"><b>ดับเบิลคลิก <span class="file-chip">SETUP</span> ทีนึง</b> <span style="color:var(--ink-2);font-size:13px">(ชื่อไฟล์ “ตั้งค่าครั้งแรก”)</span><div class="hint">มันจะเช็คมือถือ + ลงคีย์บอร์ดพิมพ์ให้เอง · เห็น “device” และ “Success” = พร้อม</div></div></div>
+    </div>
+  </div>
+
+  <div class="warnbox">
+    <div class="emo">🔒</div>
+    <p><b>ก่อนเปิดจ่ายจริง:</b> รันแบบ “ทดสอบ” (dry_run) ก่อน ดูว่าบอทตรวจถูกใบ แล้วค่อยเปิดสวิตช์จ่ายจริงที่หน้า Vela — ให้ช่าง/เจ้าของเป็นคนสลับ</p>
+  </div>
+
+  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v2)</footer>
+</div>
+</body>
+</html>
