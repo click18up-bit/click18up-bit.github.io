@@ -161,7 +161,11 @@
       <li>ไฟล์ที่ 2 (adb) แตกออกมา จะได้โฟลเดอร์ชื่อ <code>platform-tools</code> — ข้างในมี <code>adb.exe</code></li>
       <li>เอาไฟล์ของบอท (จากไฟล์ที่ 1) <b>ทั้งหมดไปวางในโฟลเดอร์ platform-tools นี้</b> ให้อยู่รวมกัน</li>
     </ol>
-    <p class="muted">สุดท้ายในโฟลเดอร์เดียวควรมี: <code>adb.exe</code> · <code>START.bat</code> · <code>SETUP.bat</code> · <code>ldb_agent.py</code> · <code>config.json</code> · <code>ADBKeyboard.apk</code></p>
+    <p class="muted">สุดท้ายในโฟลเดอร์เดียวควรมี: <code>adb.exe</code> · <code>START.bat</code> · <code>SETUP.bat</code> · <code>_find.bat</code> · <code>ldb_agent.py</code> · <code>config.json</code> · <code>ADBKeyboard.apk</code> · โฟลเดอร์ <code>msg</code></p>
+    <div class="warnbox" style="margin-top:10px">
+      <div class="e">⚠️</div>
+      <p><b>ต้องเอาไปให้ครบ</b> โดยเฉพาะโฟลเดอร์ <code>msg</code> กับไฟล์ <code>_find.bat</code> — ถ้าลืม หน้าจอจะขึ้นว่า <i>“The system cannot find the file”</i> แทนข้อความภาษาไทย</p>
+    </div>
     <div class="info">
       <div class="e">💾</div>
       <p><b>วางไดร์ไหนก็ได้</b> — จะเป็น <code>C:</code>, <code>D:</code>, <code>E:</code> หรือแฟลชไดร์ก็ได้ ไม่จำเป็นต้องเป็นไดร์ C · โปรแกรมหาที่อยู่ตัวเองอัตโนมัติ ขอแค่ไฟล์ทุกอย่าง<b>อยู่โฟลเดอร์เดียวกัน</b></p>
@@ -173,6 +177,11 @@
     <p>ลงครั้งเดียวพอ · วิธีง่ายสุด: เปิด <b>Microsoft Store</b> → ค้นหา <b>“Python 3.12”</b> → กด <b>Get / ติดตั้ง</b></p>
     <p class="muted">หรือถ้าถนัดพิมพ์คำสั่ง: เปิด Command Prompt แล้วพิมพ์</p>
     <pre>winget install Python.Python.3.12</pre>
+    <div class="warnbox" style="margin-top:10px">
+      <div class="e">🔁</div>
+      <p><b>ลงเสร็จต้องปิดหน้าต่างดำทุกอัน แล้วเปิดใหม่</b> — หน้าต่างที่เปิดค้างไว้ตั้งแต่ก่อนลง จะยัง<b>มองไม่เห็น Python</b> แล้วฟ้องว่ายังไม่ได้ลง ทั้งที่ลงแล้ว</p>
+    </div>
+    <p class="muted">อยากเช็คว่าลงสำเร็จไหม: เปิด Command Prompt <b>ใหม่</b> แล้วพิมพ์ <code>python --version</code> ต้องขึ้นเลขเวอร์ชัน เช่น <code>Python 3.12.6</code></p>
   </div>
 
   <div class="step">
@@ -238,7 +247,7 @@
     <p><b>ก่อนเปิดจ่ายเงินจริง:</b> รันแบบ <b>“ทดสอบ” (dry_run)</b> ก่อน — บอทจะทำทุกขั้นถึงหน้ายืนยันแล้วหยุด ให้ดูว่ามันตรวจถูกใบไหม · มั่นใจแล้วค่อยเปิดสวิตช์จ่ายจริงที่หน้า Vela (ให้ช่าง/เจ้าของเป็นคนสลับ)</p>
   </div>
 
-  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v6)</footer>
+  <footer>Vela · บอทถอนอัตโนมัติ LDB · อัปเดต 17 ส.ค. 2026 (v7)</footer>
 </div>
 </body>
 </html>
