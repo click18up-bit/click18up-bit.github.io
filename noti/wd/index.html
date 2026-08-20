@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<title>ติดตั้งตัวดักเครื่องถอน</title>
+<style>
+  :root{
+    --bg:#f4f7f7; --surface:#ffffff; --surface-2:#eaf1f0; --ink:#16201e; --ink-2:#55635f;
+    --line:#dde8e6; --accent:#0d9488; --accent-ink:#0b7d72;
+    --ok:#158048; --ok-bg:#e6f6ec; --ok-line:#9fd9b4;
+    --warn-bg:#fff4e6; --warn-line:#f0c384; --warn-ink:#9a5a12;
+    --info-bg:#e6f5f3; --info-line:#a8dcd5; --info-ink:#0b6b60;
+    --code-bg:#12211f; --code-ink:#e9f4f2;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0b100f; --surface:#141b19; --surface-2:#1b2523; --ink:#eef4f2; --ink-2:#9db3ad;
+    --line:#25322f; --accent:#2dd4bf; --accent-ink:#5fe6d3;
+    --ok:#4cc985; --ok-bg:#0f2a1c; --ok-line:#1f5b3b;
+    --warn-bg:#2a1f10; --warn-line:#5c4420; --warn-ink:#e6a95c;
+    --info-bg:#0f2320; --info-line:#215048; --info-ink:#66d9c9;
+    --code-bg:#080d0c; --code-ink:#e9f4f2;
+  }}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Sarabun","Noto Sans Thai",system-ui,sans-serif;
+    line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:700px;margin:0 auto;padding:30px 18px 70px}
+  a{color:var(--accent-ink)}
+
+  .head{text-align:center;margin-bottom:22px}
+  .robot{font-size:52px;line-height:1}
+  h1{margin:10px 0 6px;font-size:clamp(25px,6vw,34px);letter-spacing:-.02em}
+  .head p{margin:0 auto;max-width:40ch;color:var(--ink-2);font-size:16px}
+
+  .flow{border:1px solid var(--line);border-radius:16px;background:var(--surface);
+    padding:16px 12px;margin-bottom:26px;display:flex;align-items:center;gap:4px;justify-content:center;flex-wrap:wrap}
+  .fn{text-align:center;width:118px}
+  .fn .e{font-size:26px}
+  .fn .l{font-size:12.5px;font-weight:700;line-height:1.25;margin-top:3px}
+  .fn .s{font-size:11px;color:var(--ink-2)}
+  .fa{color:var(--accent);font-size:20px;font-weight:800}
+  @media (max-width:540px){.flow{flex-direction:column}.fa{transform:rotate(90deg)}}
+
+  h2{font-size:13px;letter-spacing:.10em;text-transform:uppercase;color:var(--ink-2);
+    margin:30px 0 14px;font-weight:800;display:flex;align-items:center;gap:9px}
+  h2::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .where{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:14px;
+    background:var(--ok-bg);border:1px solid var(--ok-line);margin-bottom:20px}
+  .where .e{font-size:24px}
+  .where p{margin:0;font-size:15px}
+  .where b{color:var(--ok)}
+
+  .dlbox{margin:0 0 18px;padding:16px;border-radius:14px;border:1px dashed var(--accent);
+    background:var(--surface-2);text-align:center}
+  .dlbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;
+    background:var(--accent);color:#04211e;font-weight:800;font-size:16px;text-decoration:none}
+  .dlnote{font-size:13px;color:var(--ink-2);margin-top:8px}
+
+  .step{border:1px solid var(--line);border-radius:16px;background:var(--surface);
+    padding:16px 18px;margin-bottom:13px}
+  .step .sh{display:flex;align-items:center;gap:11px;margin-bottom:6px}
+  .step .n{flex:0 0 30px;height:30px;border-radius:9px;display:grid;place-items:center;
+    font-weight:800;background:var(--accent);color:#04211e;font-size:15px}
+  .step .h3{font-size:17px;font-weight:800}
+  .step .what{font-size:13px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);
+    border-radius:8px;padding:3px 9px;display:inline-block;margin-left:auto}
+  .step p{margin:6px 0;font-size:14.5px;color:var(--ink)}
+  .step ol{margin:6px 0;padding-left:20px;font-size:14.5px}
+  .step li{margin:4px 0}
+  .step b{font-weight:800}
+  .step .muted{color:var(--ink-2)}
+
+  .info{display:flex;gap:11px;padding:14px 16px;border-radius:13px;margin:20px 0 2px;
+    background:var(--info-bg);border:1px solid var(--info-line)}
+  .info .e{font-size:20px}
+  .info p{margin:0;font-size:14.5px;color:var(--info-ink)}
+  .info b{color:var(--info-ink)}
+
+  .warnbox{display:flex;gap:11px;padding:14px 16px;border-radius:14px;margin-top:14px;
+    background:var(--warn-bg);border:1px solid var(--warn-line)}
+  .warnbox .e{font-size:20px}
+  .warnbox p{margin:0;font-size:14px;color:var(--warn-ink)}
+  .warnbox b{color:var(--warn-ink)}
+
+  footer{margin-top:34px;text-align:center;font-size:12.5px;color:var(--ink-2)}
+
+  /* หน้าเลือก: การ์ดใหญ่สองใบ กดแล้วไปคู่มือของเครื่องนั้น */
+  .pick{display:grid;gap:14px;margin:6px 0 4px}
+  .pk{display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit;
+    border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:16px 18px;
+    transition:border-color .15s,transform .15s}
+  .pk:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .pk img{width:60px;height:60px;border-radius:14px;flex:0 0 auto}
+  .pk .t{font-size:19px;font-weight:800;line-height:1.2}
+  .pk .d{font-size:14px;color:var(--ink-2);margin-top:3px}
+  .pk .go{margin-left:auto;font-size:22px;color:var(--accent)}
+  /* แถบระบุตัวตนของแอปบนหัวคู่มือ — เห็นไอคอนจริงก่อนโหลด จะได้ไม่โหลดผิดตัว */
+  .idcard{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:16px;
+    background:var(--surface);padding:14px 16px;margin-bottom:20px}
+  .idcard img{width:56px;height:56px;border-radius:13px;flex:0 0 auto}
+  .idcard .n{font-size:17px;font-weight:800}
+  .idcard .s{font-size:13.5px;color:var(--ink-2);margin-top:2px}
+  .backlink{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+  .stopbox{display:flex;gap:11px;padding:15px 16px;border-radius:14px;margin:0 0 20px;
+    background:var(--warn-bg);border:1px solid var(--warn-line)}
+  .stopbox .e{font-size:22px}
+  .stopbox p{margin:0;font-size:14.5px;color:var(--warn-ink)}
+  .stopbox b{color:var(--warn-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="backlink" href="../">‹ กลับไปหน้าเลือก</a>
+
+  <div class="head">
+    <div class="robot">📤</div>
+    <h1>ตัวดักเครื่องถอน</h1>
+    <p>อ่านโนติ “เงินออก” ตอนโอนให้ลูกค้า แล้วส่งเข้าระบบไว้เทียบยอด</p>
+  </div>
+
+  <div class="idcard">
+    <img src="../dl/icon-thon.png" alt="ไอคอนแอปตัวดักเครื่องถอน">
+    <div>
+      <div class="n">ดักถอน 📤</div>
+      <div class="s">ไอคอนส้ม ลูกศรขึ้น ↑ — ถ้าไอคอนบนมือถือไม่ใช่สีนี้ แปลว่าโหลดผิดตัว</div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="fn"><div class="e">📤</div><div class="l">โอนออกให้ลูกค้า</div><div class="s">ในแอปธนาคาร</div></div>
+    <div class="fa">→</div>
+    <div class="fn"><div class="e">📱</div><div class="l">ตัวดักถอนอ่าน</div><div class="s">โนติเงินออก</div></div>
+    <div class="fa">→</div>
+    <div class="fn"><div class="e">☁️</div><div class="l">ส่งเข้าระบบ</div><div class="s">อัตโนมัติ</div></div>
+    <div class="fa">→</div>
+    <div class="fn"><div class="e">🧾</div><div class="l">เทียบยอดถอน</div><div class="s">ตรงไม่ตรงรู้ทันที</div></div>
+  </div>
+
+  <div class="where">
+    <div class="e">📱</div>
+    <p>ติดตั้งบน <b>มือถือเครื่องถอน</b> — เครื่องที่ใช้ <b>โอนเงินออก</b> ให้ลูกค้า (คนละเครื่องกับอีกตัว)</p>
+  </div>
+
+  <div class="stopbox">
+    <div class="e">🛑</div>
+    <p><b>ถอนแอปเก่าออกก่อน</b> — เครื่องนี้เคยลง <b>VTN Notify</b> (ไอคอนซองจดหมาย) ให้กดถอนทิ้งก่อน
+    ไม่งั้นสองแอปอ่านโนติใบเดียวกัน ส่งซ้ำสองรอบ</p>
+  </div>
+
+  <h2>🔧 ติดตั้ง (ทำครั้งเดียว)</h2>
+
+  <div class="dlbox">
+    <a class="dlbtn" href="../dl/vtn-noti-thon.apk">⬇️ โหลดดักถอน 📤</a>
+    <div class="dlnote">ไฟล์เล็ก ~45 KB โหลดลงมือถือได้เลย</div>
+  </div>
+
+  <div class="step">
+    <div class="sh"><div class="n">1</div><div class="h3">ติดตั้งแอป</div></div>
+    <p>เปิดไฟล์ที่โหลด → กด <b>ติดตั้ง</b> · ถ้าเตือน <b>“แหล่งที่ไม่รู้จัก”</b> ให้กดอนุญาต แล้วติดตั้งต่อ</p>
+    <p class="muted">ติดตั้งเสร็จจะเห็นไอคอนส้มชื่อ <b>ดักถอน 📤</b> บนหน้าจอ</p>
+  </div>
+
+  <div class="step">
+    <div class="sh"><div class="n">2</div><div class="h3">เปิดแอป แล้ววาง URL</div><span class="what">ที่อยู่ปลายทาง</span></div>
+    <p>ในช่อง <b>“URL ปลายทาง”</b> วางลิงก์ที่เจ้าของ/ช่างเอามาให้</p>
+    <p class="muted">🔴 ลิงก์ของเครื่องฝากกับเครื่องถอน <b>คนละอัน</b> — วางสลับกันยอดจะไปลงผิดบัญชี</p>
+  </div>
+
+  <div class="step">
+    <div class="sh"><div class="n">3</div><div class="h3">อนุญาต “อ่านการแจ้งเตือน”</div><span class="what">จำเป็นต้องเปิด</span></div>
+    <p>แอปจะพาไปหน้าตั้งค่าของ Android → หา <b>ดักถอน 📤</b> แล้ว<b>เปิดสวิตช์</b></p>
+    <p class="muted">ในรายการจะมีหลายแอป ดูให้ตรงชื่อ ไม่ใช่เปิดผิดตัว</p>
+  </div>
+
+  <div class="step">
+    <div class="sh"><div class="n">4</div><div class="h3">ปิดโหมดประหยัดแบตให้แอปนี้</div><span class="what">กันแอปหลับ</span></div>
+    <p>อนุญาต <b>“ไม่ให้ระบบหยุดแอป”</b> (บางเครื่องเรียก “ไม่จำกัดแบต”) · แอปจะถามให้ตอนตั้งค่า</p>
+    <p class="muted">ถ้าไม่ปิด เครื่องอาจพักแอป แล้วโนติไม่ถูกส่ง</p>
+  </div>
+
+  <div class="step">
+    <div class="sh"><div class="n">5</div><div class="h3">กด “ทดสอบส่ง”</div><span class="what">พิสูจน์ว่าต่อติด</span></div>
+    <p>เห็นสถานะ <b>“ส่งสำเร็จ”</b> = ต่อระบบติดแล้ว เสร็จเรียบร้อย 🎉</p>
+    <p class="muted">ใบทดสอบจะไม่ปนกับเงินจริง ระบบแยกให้เอง</p>
+  </div>
+
+  <div class="info">
+    <div class="e">🔁</div>
+    <p><b>หลังติดตั้งเสร็จ ปล่อยแอปเปิดไว้เฉย ๆ</b> — มันทำงานเองตลอด 24 ชม. ไม่ต้องเปิด/กดอะไรทุกวัน</p>
+  </div>
+
+  <div class="warnbox">
+    <div class="e">⚠️</div>
+    <p><b>อย่าปิดแอป · อย่าถอนสิทธิ์อ่านการแจ้งเตือน</b> — เสียบชาร์จ + เปิดเน็ตไว้ตลอด ·
+    ถ้าเครื่องเงียบเกิน 30 นาที ระบบจะเตือนเจ้าของอัตโนมัติ</p>
+  </div>
+
+  <footer>Vela · VTN · ดักถอน 📤 (v2) · 20 ส.ค. 2026</footer>
+
+</div>
+</body>
+</html>

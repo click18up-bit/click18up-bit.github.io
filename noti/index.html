@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="light dark">
-<title>ติดตั้งตัวดักฝาก</title>
+<title>ตัวดักโนติธนาคาร — เลือกเครื่อง</title>
 <style>
   :root{
     --bg:#f4f7f7; --surface:#ffffff; --surface-2:#eaf1f0; --ink:#16201e; --ink-2:#55635f;
@@ -87,79 +87,76 @@
   .warnbox b{color:var(--warn-ink)}
 
   footer{margin-top:34px;text-align:center;font-size:12.5px;color:var(--ink-2)}
+
+  /* หน้าเลือก: การ์ดใหญ่สองใบ กดแล้วไปคู่มือของเครื่องนั้น */
+  .pick{display:grid;gap:14px;margin:6px 0 4px}
+  .pk{display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit;
+    border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:16px 18px;
+    transition:border-color .15s,transform .15s}
+  .pk:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .pk img{width:60px;height:60px;border-radius:14px;flex:0 0 auto}
+  .pk .t{font-size:19px;font-weight:800;line-height:1.2}
+  .pk .d{font-size:14px;color:var(--ink-2);margin-top:3px}
+  .pk .go{margin-left:auto;font-size:22px;color:var(--accent)}
+  /* แถบระบุตัวตนของแอปบนหัวคู่มือ — เห็นไอคอนจริงก่อนโหลด จะได้ไม่โหลดผิดตัว */
+  .idcard{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:16px;
+    background:var(--surface);padding:14px 16px;margin-bottom:20px}
+  .idcard img{width:56px;height:56px;border-radius:13px;flex:0 0 auto}
+  .idcard .n{font-size:17px;font-weight:800}
+  .idcard .s{font-size:13.5px;color:var(--ink-2);margin-top:2px}
+  .backlink{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+  .stopbox{display:flex;gap:11px;padding:15px 16px;border-radius:14px;margin:0 0 20px;
+    background:var(--warn-bg);border:1px solid var(--warn-line)}
+  .stopbox .e{font-size:22px}
+  .stopbox p{margin:0;font-size:14.5px;color:var(--warn-ink)}
+  .stopbox b{color:var(--warn-ink)}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="head">
-    <div class="robot">📥</div>
-    <h1>ตัวดักฝาก (โนติ)</h1>
-    <p>แอปในมือถือ คอยอ่านโนติ “เงินเข้า” จากแอปธนาคาร แล้วส่งเข้าระบบให้เอง</p>
+    <div class="robot">📲</div>
+    <h1>ตัวดักโนติธนาคาร</h1>
+    <p>แยกเป็น 2 แอป คนละเครื่อง คนละไอคอน — เลือกให้ตรงกับเครื่องที่จะติดตั้ง</p>
   </div>
 
-  <!-- ทำงานยังไง -->
-  <div class="flow">
-    <div class="fn"><div class="e">🏦</div><div class="l">ธนาคารเด้งโนติ</div><div class="s">เงินเข้าบัญชี</div></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="e">📱</div><div class="l">แอปดักอ่าน</div><div class="s">ในมือถือ</div></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="e">☁️</div><div class="l">ส่งเข้าระบบ Vela</div><div class="s">อัตโนมัติ</div></div>
-    <div class="fa">→</div>
-    <div class="fn"><div class="e">💳</div><div class="l">เครดิตลูกค้า</div><div class="s">ทันที</div></div>
+  <div class="stopbox">
+    <div class="e">🛑</div>
+    <p><b>เครื่องที่เคยลงแอปเก่า (VTN Notify) ต้องถอนออกก่อน</b><br>
+    ไม่ถอน = สองแอปอ่านโนติใบเดียวกัน ส่งเข้าระบบซ้ำสองรอบ</p>
   </div>
 
-  <div class="where">
-    <div class="e">📱</div>
-    <p>ติดตั้งบน <b>มือถือเครื่องฝาก</b> — เครื่องที่มีแอปธนาคารรับเงินเข้า (คนละเครื่องกับบอทถอน)</p>
-  </div>
-
-  <h2>🔧 ติดตั้ง (ทำครั้งเดียว)</h2>
-
-  <div class="dlbox">
-    <a class="dlbtn" href="https://drive.google.com/uc?export=download&id=1piRshGdsRq0uxTCm4N5j89d9oCfVPGvA">⬇️ โหลดตัวดักฝาก (vtn-notify.apk)</a>
-    <div class="dlnote">ไฟล์เดียว โหลดลงมือถือได้เลย</div>
-  </div>
-
-  <div class="step">
-    <div class="sh"><div class="n">1</div><div class="h3">ติดตั้งแอป</div></div>
-    <p>เปิดไฟล์ที่โหลด → กด <b>ติดตั้ง</b> · ถ้าเตือน <b>“แหล่งที่ไม่รู้จัก”</b> ให้กดอนุญาต แล้วติดตั้งต่อ</p>
-  </div>
-
-  <div class="step">
-    <div class="sh"><div class="n">2</div><div class="h3">เปิดแอป แล้ววาง URL</div><span class="what">ที่อยู่ปลายทาง</span></div>
-    <p>ในช่อง <b>“URL ปลายทาง”</b> วางลิงก์ที่เจ้าของ/ช่างเอามาให้ (ก๊อปมาจากหน้าตั้งค่าระบบ)</p>
-    <p class="muted">ลิงก์นี้คือ “ที่อยู่” ที่บอกแอปว่าจะส่งข้อมูลโนติไปที่ไหน</p>
-  </div>
-
-  <div class="step">
-    <div class="sh"><div class="n">3</div><div class="h3">อนุญาต “อ่านการแจ้งเตือน”</div><span class="what">จำเป็นต้องเปิด</span></div>
-    <p>แอปจะพาไปหน้าตั้งค่าของ Android → <b>เปิดสวิตช์ให้แอปนี้</b></p>
-    <p class="muted">ถ้าไม่เปิด แอปจะอ่านโนติเงินเข้าไม่ได้เลย</p>
-  </div>
-
-  <div class="step">
-    <div class="sh"><div class="n">4</div><div class="h3">ปิดโหมดประหยัดแบตให้แอปนี้</div><span class="what">กันแอปหลับ</span></div>
-    <p>อนุญาต <b>“ไม่ให้ระบบหยุดแอป”</b> (บางเครื่องเรียก “ไม่จำกัดแบต”) · แอปจะถามให้ตอนตั้งค่า</p>
-    <p class="muted">ถ้าไม่ปิด เครื่องอาจพักแอป แล้วโนติไม่ถูกส่ง</p>
-  </div>
-
-  <div class="step">
-    <div class="sh"><div class="n">5</div><div class="h3">กด “ทดสอบส่ง”</div><span class="what">พิสูจน์ว่าต่อติด</span></div>
-    <p>เห็นสถานะ <b>“ส่งสำเร็จ”</b> = ต่อระบบติดแล้ว เสร็จเรียบร้อย 🎉</p>
+  <h2>📱 เครื่องนี้ทำหน้าที่อะไร</h2>
+  <div class="pick">
+    <a class="pk" href="./dep/">
+      <img src="../noti/dl/icon-fak.png" alt="ไอคอนตัวดักฝาก เขียว ลูกศรลง">
+      <div><div class="t">เครื่องฝาก</div>
+        <div class="d">มือถือที่ผูกบัญชี <b>รับเงินเข้า</b> จากลูกค้า</div></div>
+      <div class="go">›</div>
+    </a>
+    <a class="pk" href="./wd/">
+      <img src="../noti/dl/icon-thon.png" alt="ไอคอนตัวดักถอน ส้ม ลูกศรขึ้น">
+      <div><div class="t">เครื่องถอน</div>
+        <div class="d">มือถือที่ใช้ <b>โอนเงินออก</b> ให้ลูกค้า</div></div>
+      <div class="go">›</div>
+    </a>
   </div>
 
   <div class="info">
-    <div class="e">🔁</div>
-    <p><b>หลังติดตั้งเสร็จ ปล่อยแอปเปิดไว้เฉย ๆ</b> — มันทำงานเองตลอด 24 ชม. ไม่ต้องเปิด/กดอะไรทุกวัน</p>
+    <div class="e">💡</div>
+    <p><b>ทำไมต้องแยกเป็นสองแอป</b> — เดิมเป็นแอปเดียว ชื่อกับไอคอนเหมือนกันเป๊ะทั้งสองเครื่อง
+    หยิบผิดเครื่องแล้วยอดวิ่งไปคนละบัญชี ตอนนี้ <b>เขียว = ฝาก · ส้ม = ถอน</b> ดูปราดเดียวรู้</p>
   </div>
 
-  <div class="warnbox">
-    <div class="e">⚠️</div>
-    <p><b>อย่าปิดแอป · อย่าถอนสิทธิ์อ่านการแจ้งเตือน</b> — เสียบชาร์จ + เปิดเน็ตไว้ตลอด · ถ้าเครื่องเงียบเกิน 30 นาที ระบบจะเตือนเจ้าของอัตโนมัติ</p>
+  <div class="info">
+    <div class="e">🤖</div>
+    <p>กำลังหา <b>บอทถอนอัตโนมัติ LDB</b> (ตัวที่กดจ่ายเงินให้เอง) อยู่คนละที่ →
+    <a href="../ldb-bot/">เปิดคู่มือบอทถอน</a></p>
   </div>
 
-  <footer>Vela · ตัวดักฝาก (vtn-notify) · อัปเดต 17 ส.ค. 2026 (v2)</footer>
+  <footer>Vela · VTN · ตัวดักโนติ v2 — แยกฝาก/ถอน · 20 ส.ค. 2026</footer>
+
 </div>
 </body>
 </html>
